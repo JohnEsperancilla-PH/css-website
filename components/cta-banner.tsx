@@ -39,8 +39,10 @@ export default function CTABanner() {
               Join CSS USLS <ArrowUpRight className="!h-5 !w-5" />
             </a>
           </Button>
-          <Button size="lg" variant="outline">
-            Learn More <Forward className="!h-5 !w-5" />
+          <Button asChild size="lg" variant="outline">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzETVhjEAIolInHOxQASE5mTJhaRJQetUSB8VgwCg0pgLI1Q/viewform?usp=header" target="_blank" rel="noopener noreferrer">
+              Become an Officer <Forward className="!h-5 !w-5" />
+            </a>
           </Button>
         </div>
       </div>
