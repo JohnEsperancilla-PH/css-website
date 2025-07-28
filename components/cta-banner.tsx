@@ -34,8 +34,10 @@ export default function CTABanner() {
           </p>
         </div>
         <div className="relative z-0 mt-14 flex flex-col sm:flex-row gap-4">
-          <Button size="lg">
-            Join CSS USLS <ArrowUpRight className="!h-5 !w-5" />
+          <Button asChild size="lg">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc00ARqp2iVGDPP6wWi4KHdlkS8ZEHywKP_gYuT0KMSIrDcKA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
+              Join CSS USLS <ArrowUpRight className="!h-5 !w-5" />
+            </a>
           </Button>
           <Button size="lg" variant="outline">
             Learn More <Forward className="!h-5 !w-5" />

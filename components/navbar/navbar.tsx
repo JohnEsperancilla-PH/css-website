@@ -13,7 +13,11 @@ const Navbar = () => {
         <NavMenu className="hidden md:block" />
 
         <div className="flex items-center gap-3">
-          <Button className="hidden xs:inline-flex">Get Started</Button>
+          <Button asChild className="hidden xs:inline-flex">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc00ARqp2iVGDPP6wWi4KHdlkS8ZEHywKP_gYuT0KMSIrDcKA/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
+              Join CSS Now
+            </a>
+          </Button>
 
           {/* Mobile Menu */}
           <div className="md:hidden">
