@@ -8,9 +8,9 @@ const geistSans = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "PureLanding - Beautiful Shadcn UI Landing Page",
+  title: "Computer Science Society - USLS",
   description:
-    "A beautiful landing page built with Shadcn UI, Next.js 15, Tailwind CSS, and Shadcn UI Blocks.",
+    "Accentuate your potential. And let your passion for Computer Science take flight.",
   keywords: [
     "Computer Science Society USLS",
     "CSS USLS",
@@ -21,30 +21,35 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Computer Science Society - USLS",
     locale: "en_US",
-    url: "https://shadcn-landing-page.vercel.app",
-    title: "PureLanding - Beautiful Shadcn UI Landing Page",
+    url: "https://computer-science-society-usls.vercel.app",
+    title: "Computer Science Society - USLS",
     description:
-      "A beautiful landing page built with Shadcn UI, Next.js 15, Tailwind CSS, and Shadcn UI Blocks.",
+      "Accentuate your potential. And let your passion for Computer Science take flight.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "PureLanding Preview",
+        alt: "Computer Science Society - USLS",
       },
     ],
   },
   authors: [
     {
-      name: "Akash Moradiya",
-      url: "https://shadcnui-blocks.com",
+      name: "Computer Science Society - USLS",
+      url: "https://computer-science-society-usls.vercel.app",
     },
   ],
-  creator: "Akash Moradiya",
+  creator: "John Esperancilla",
   icons: [
     {
       rel: "icon",
       url: "/favicon.ico",
+    },
+    {
+      rel: "icon",
+      type: "image/svg+xml",
+      url: "/favicon.svg",
     },
     {
       rel: "apple-touch-icon",
@@ -53,26 +58,14 @@ export const metadata: Metadata = {
     {
       rel: "icon",
       type: "image/png",
-      url: "/favicon-32x32.png",
-      sizes: "32x32",
+      url: "/favicon-96x96.png",
+      sizes: "96x96",
     },
     {
       rel: "icon",
       type: "image/png",
-      url: "/favicon-16x16.png",
-      sizes: "16x16",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      url: "/android-chrome-192x192.png",
+      url: "/web-app-manifest-192x192.png",
       sizes: "192x192",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      url: "/android-chrome-512x512.png",
-      sizes: "512x512",
     },
   ],
   robots: {
