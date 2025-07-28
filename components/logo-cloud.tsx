@@ -4,7 +4,7 @@ import { Users, Code, Calendar, Trophy } from "lucide-react";
 function LogoCloud(props: HTMLAttributes<HTMLDivElement>) {
   return (
     <div {...props}>
-      <p className="text-center text-muted-foreground mb-8">Join the community that's shaping the future</p>
+      <p className="text-center text-muted-foreground mb-8">Join the community that&apos;s shaping the future</p>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         {/* Active Members */}
         <div className="flex flex-col items-center space-y-2">

@@ -3,12 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { 
   Users, 
-  Target, 
-  Lightbulb, 
-  BookOpen, 
-  Code, 
-  Rocket,
-  Heart,
   Trophy,
   Calendar,
   ArrowUpRight
@@ -34,7 +28,7 @@ export default function AboutPage() {
               <span className="block">Tech Leaders</span>
             </h1>
             <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto !leading-relaxed">
-              The Computer Science Society of the University of St. La Salle is a vibrant community where innovation meets collaboration, and where every student's potential takes flight.
+              The Computer Science Society of the University of St. La Salle is a vibrant community where innovation meets collaboration, and where every student&apos;s potential takes flight.
             </p>
           </div>
         </section>
@@ -60,7 +54,7 @@ export default function AboutPage() {
                     src="/images/mission.jpg"
                     alt="Computer Science Society Mission"
                     fill
-                    className="object-cover object-center scale-150"
+                    className="object-cover object-center scale-110"
                   />
                 </div>
               </div>
@@ -75,7 +69,7 @@ export default function AboutPage() {
                     src="/images/vision.jpg"
                     alt="Computer Science Society Vision"
                     fill
-                    className="object-cover object-center scale-150"
+                    className="object-cover object-center scale-110"
                   />
                 </div>
               </div>
@@ -108,14 +102,14 @@ export default function AboutPage() {
                   Founded with the vision of creating a supportive community for computer science students, the CSS USLS has grown into a dynamic organization that bridges academic learning with real-world application.
                 </p>
                 <p className="text-lg text-muted-foreground !leading-relaxed mb-8">
-                  Through years of dedication and collaboration, we've built a legacy of excellence, fostering innovation and empowering students to reach their full potential in the ever-evolving field of technology.
+                  Through years of dedication and collaboration, we&apos;ve built a legacy of excellence, fostering innovation and empowering students to reach their full potential in the ever-evolving field of technology.
                 </p>
                 <Button size="lg" className="rounded-full">
                   Join Our Journey <ArrowUpRight className="!h-5 !w-5 ml-2" />
                 </Button>
               </div>
 
-              <div className="dark:border bg-background text-foreground rounded-2xl p-8 md:p-12">
+              <div className="border bg-background text-foreground rounded-2xl p-8 md:p-12">
                 <div className="space-y-8">
                   <div className="flex items-start">
                     <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 text-primary mr-4 mt-1">

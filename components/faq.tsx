@@ -1,9 +1,6 @@
 import {
-  BadgeDollarSign,
   Route,
   ShieldCheck,
-  Truck,
-  Undo2,
   UserRoundCheck,
   Ticket,
   Navigation,
