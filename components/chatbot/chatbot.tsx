@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { ChatMessage } from "./chat-message";
-import { MessageSquare, X, ExternalLink } from "lucide-react";
+import { MessageSquare, X, ExternalLink, Trash2, SendHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Message {
@@ -19,6 +19,20 @@ const WELCOME_MESSAGE = {
   content: "Hi there! 👋 I'm your CSS CoPilot, here to help you learn more about the Computer Science Society - USLS. What would you like to know?"
 };
 
+// Common questions that will be randomly selected
+const SUGGESTED_QUESTIONS = [
+  "What events do you organize?",
+  "How can I join CSS?",
+  "When are the regular meetings?",
+  "What programming workshops do you offer?",
+  "What are the membership benefits?",
+  "How can I participate in projects?",
+  "What is the membership fee?",
+  "Do you offer coding tutorials?",
+  "Can freshmen join CSS?",
+  "What programming languages do you focus on?"
+];
+
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([WELCOME_MESSAGE]);
@@ -26,10 +40,31 @@ export function Chatbot() {
   const [isLoading, setIsLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string>("");
+  const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([]);
 
   // Get context and system prompt from environment variables
   const context = process.env.NEXT_PUBLIC_CHATBOT_CONTEXT || "";
   const systemPrompt = process.env.NEXT_PUBLIC_CHATBOT_SYSTEM_PROMPT || "";
+
+  // Initialize random suggested questions
+  useEffect(() => {
+    updateSuggestedQuestions();
+  }, []);
+
+  const updateSuggestedQuestions = () => {
+    const shuffled = [...SUGGESTED_QUESTIONS].sort(() => 0.5 - Math.random());
+    setSuggestedQuestions(shuffled.slice(0, 3));
+  };
+
+  const handleClearChat = () => {
+    setMessages([WELCOME_MESSAGE]);
+    updateSuggestedQuestions();
+  };
+
+  const handleSuggestedQuestion = (question: string) => {
+    setInput(question);
+    handleSubmit(null, question);
+  };
 
   useEffect(() => {
     if (!context) {
@@ -46,11 +81,12 @@ export function Chatbot() {
     }
   }, [messages]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
+  const handleSubmit = async (e: React.FormEvent | null, suggestedInput?: string) => {
+    if (e) e.preventDefault();
+    const messageText = suggestedInput || input;
+    if (!messageText.trim() || isLoading) return;
 
-    const userMessage = { role: "user" as const, content: input };
+    const userMessage = { role: "user" as const, content: messageText };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
@@ -91,6 +127,7 @@ export function Chatbot() {
         content: data.choices[0].message.content,
       };
       setMessages((prev) => [...prev, assistantMessage]);
+      updateSuggestedQuestions();
     } catch (error) {
       console.error("Error:", error);
       setError(error instanceof Error ? error.message : "An error occurred");
@@ -145,22 +182,49 @@ export function Chatbot() {
               <ChatMessage key={index} {...message} />
             ))}
             {isLoading && (
-              <div className="flex justify-center">
-                <span className="animate-pulse">Thinking... 💭</span>
+              <ChatMessage
+                role="assistant"
+                content=""
+                isTyping={true}
+              />
+            )}
+            {messages.length === 1 && (
+              <div className="space-y-2">
+                <p className="text-xs text-muted-foreground text-center">Suggested questions:</p>
+                <div className="flex flex-col gap-2">
+                  {suggestedQuestions.map((question, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleSuggestedQuestion(question)}
+                      className="text-sm text-left px-3 py-2 rounded-lg hover:bg-muted transition-colors duration-200"
+                    >
+                      {question}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </div>
 
           <form onSubmit={handleSubmit} className="p-4 border-t">
-            <div className="flex gap-2">
+            <div className="flex items-center gap-2">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                onClick={handleClearChat}
+                className="shrink-0"
+              >
+                <Trash2 className="h-4 w-4 text-muted-foreground hover:text-destructive transition-colors" />
+              </Button>
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask me anything! 😊"
                 disabled={isLoading}
               />
-              <Button type="submit" disabled={isLoading}>
-                Send
+              <Button type="submit" size="icon" disabled={isLoading} className="shrink-0">
+                <SendHorizontal className="h-4 w-4" />
               </Button>
             </div>
           </form>

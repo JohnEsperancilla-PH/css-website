@@ -2,13 +2,15 @@
 
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
+import { User } from "lucide-react";
 
 interface ChatMessageProps {
   content: string;
   role: "user" | "assistant";
+  isTyping?: boolean;
 }
 
-export function ChatMessage({ content, role }: ChatMessageProps) {
+export function ChatMessage({ content, role, isTyping = false }: ChatMessageProps) {
   return (
     <div
       className={cn(
@@ -20,7 +22,9 @@ export function ChatMessage({ content, role }: ChatMessageProps) {
         {role === "assistant" ? (
           <AvatarImage src="/images/css-logo.png" alt="CSS Logo" />
         ) : (
-          <AvatarFallback>U</AvatarFallback>
+          <AvatarFallback className="bg-primary">
+            <User className="h-4 w-4 text-primary-foreground" />
+          </AvatarFallback>
         )}
       </Avatar>
       <div
@@ -31,7 +35,15 @@ export function ChatMessage({ content, role }: ChatMessageProps) {
             : "bg-muted"
         )}
       >
-        {content}
+        {isTyping ? (
+          <div className="flex gap-1 h-4 items-center">
+            <span className="w-1.5 h-1.5 bg-foreground/60 rounded-full animate-typing1" />
+            <span className="w-1.5 h-1.5 bg-foreground/60 rounded-full animate-typing2" />
+            <span className="w-1.5 h-1.5 bg-foreground/60 rounded-full animate-typing3" />
+          </div>
+        ) : (
+          content
+        )}
       </div>
     </div>
   );
