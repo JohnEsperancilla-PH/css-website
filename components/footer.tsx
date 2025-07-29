@@ -4,29 +4,6 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import Image from "next/image";
 
-const footerLinks = [
-  {
-    title: "About",
-    href: "#about",
-  },
-  {
-    title: "Events",
-    href: "#events",
-  },
-  {
-    title: "FAQ",
-    href: "#faq",
-  },
-  {
-    title: "Testimonials",
-    href: "#testimonials",
-  },
-  {
-    title: "Contact",
-    href: "#contact",
-  },
-];
-
 const Footer = () => {
   return (
     <footer className="dark:border-t mt-40 dark bg-background text-foreground">
