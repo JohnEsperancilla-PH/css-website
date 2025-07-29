@@ -16,7 +16,7 @@ const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
 const WELCOME_MESSAGE = {
   role: "assistant" as const,
-  content: "Hi there! 👋 I'm your CSS CoPilot, here to help you learn more about the Computer Science Society. What would you like to know?"
+  content: "Hi there! 👋 I'm your CSS CoPilot, here to help you learn more about the Computer Science Society - USLS. What would you like to know?"
 };
 
 export function Chatbot() {
