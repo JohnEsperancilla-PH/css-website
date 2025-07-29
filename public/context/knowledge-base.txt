@@ -1,0 +1,25 @@
+Welcome to CSS! We are a student organization dedicated to empowering students in technology.
+
+Our Mission:
+We aim to foster a community of tech enthusiasts, provide learning opportunities, and bridge the gap between academia and industry.
+
+Key Services:
+1. Workshops and Training
+2. Industry Networking Events
+3. Technical Project Collaborations
+4. Mentorship Programs
+
+Frequently Asked Questions:
+Q: How can I join CSS?
+A: You can join CSS by filling out the membership form on our website and attending our orientation session.
+
+Q: When are your regular meetings?
+A: We hold general meetings every Friday at 5 PM in the Computer Science building.
+
+Q: Do you offer programming tutorials?
+A: Yes, we regularly conduct programming workshops covering various technologies and frameworks.
+
+Contact Information:
+Email: contact@cssorg.com
+Location: Computer Science Building, Room 301
+Social Media: @CSSOrg on Twitter, Instagram, and LinkedIn 
