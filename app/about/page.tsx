@@ -3,6 +3,12 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { 
   Users, 
   Trophy,
@@ -148,6 +154,268 @@ export default function AboutPage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Officers Section */}
+        <section className="py-20 px-6 bg-gray-50">
+          <div className="max-w-screen-xl mx-auto">
+            <div className="text-center mb-16">
+              <Badge className="bg-primary rounded-full py-2 px-4 text-sm border-none mb-4">
+                Meet the Team
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                Our Officers
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Meet the dedicated team of officers who work tirelessly to make CSS USLS a vibrant and innovative community.
+              </p>
+            </div>
+
+            <div className="max-w-2xl mx-auto">
+              <Accordion type="single" collapsible className="w-full space-y-6">
+                {/* Executive Officers */}
+                <AccordionItem value="executive-officers">
+                  <AccordionTrigger className="hover:no-underline">
+                    <h3 className="text-2xl font-semibold">Executive Officers</h3>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-4 pt-4">
+                      {/* President */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/president.jpg"
+                            alt="President"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Lyncolin Deligero</div>
+                          <div className="text-sm text-muted-foreground">Club Executive President</div>
+                          <p className="text-sm text-muted-foreground mt-1">Leading CSS USLS with vision and dedication.</p>
+                        </div>
+                      </div>
+
+                      {/* Vice President */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/vicepresident.jpg"
+                            alt="Vice President"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Mikaella Bea Fuentebella</div>
+                          <div className="text-sm text-muted-foreground">Executive Club Vice President</div>
+                          <p className="text-sm text-muted-foreground mt-1">Supporting operations and member development.</p>
+                        </div>
+                      </div>
+
+                      {/* Secretary */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/secretary.jpg"
+                            alt="Secretary"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Arwen Mica Elle Perez</div>
+                          <div className="text-sm text-muted-foreground">Club Executive Secretary</div>
+                          <p className="text-sm text-muted-foreground mt-1">Managing documentation and communications.</p>
+                        </div>
+                      </div>
+
+                      {/* Treasurer */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/treasurer.jpg"
+                            alt="Treasurer"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Executive Club Treasurer</div>
+                          <div className="text-sm text-muted-foreground">Wilfredo Perez III</div>
+                          <p className="text-sm text-muted-foreground mt-1">Overseeing financial management and budgeting.</p>
+                        </div>
+                      </div>
+
+                      {/* Club Moderator */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/clubmoderator.jpg"
+                            alt="Treasurer"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Club Moderator</div>
+                          <div className="text-sm text-muted-foreground">Julian Diego Mapa</div>
+                          <p className="text-sm text-muted-foreground mt-1">Overseeing financial management and budgeting.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                {/* Department Heads */}
+                <AccordionItem value="department-heads">
+                  <AccordionTrigger className="hover:no-underline">
+                    <h3 className="text-2xl font-semibold">Department Heads</h3>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="space-y-4 pt-4">
+                      {/* Tech Department */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/dhr.jpg"
+                            alt="Tech Head"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">John Leonard Esperancilla</div>
+                          <div className="text-sm text-muted-foreground">Head of Department of Human Relations</div>
+                          <p className="text-sm text-muted-foreground mt-1">hehehe</p>
+                        </div>
+                      </div>
+
+                      {/* Events Department */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/bnf.jpg"
+                            alt="Events Head"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Stalingrad Dollosa</div>
+                          <div className="text-sm text-muted-foreground">Head of Department of Budget and Finance</div>
+                          <p className="text-sm text-muted-foreground mt-1">Organizing and coordinating community events.</p>
+                        </div>
+                      </div>
+
+                      {/* PR Department */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/dpr1.jpg"
+                            alt="PR Head"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Nathaniel Manuel Cuales</div>
+                          <div className="text-sm text-muted-foreground">Co-Head of Department of Public Relations</div>
+                          <p className="text-sm text-muted-foreground mt-1">Managing communications and public presence.</p>
+                        </div>
+                      </div>
+
+                      {/* PR Department */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/dpr2.jpg"
+                            alt="PR Head"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Josh Dane Labistre</div>
+                          <div className="text-sm text-muted-foreground">Co-Head of Department of Public Relations</div>
+                          <p className="text-sm text-muted-foreground mt-1">Managing communications and public presence.</p>
+                        </div>
+                      </div>
+
+                      {/* PR Department */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/daa.jpg"
+                            alt="PR Head"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Kim Ivan Arigorat</div>
+                          <div className="text-sm text-muted-foreground">Head of Department of Academic Affairs</div>
+                          <p className="text-sm text-muted-foreground mt-1">Managing communications and public presence.</p>
+                        </div>
+                      </div>
+
+                      {/* PR Department */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/selo.jpg"
+                            alt="PR Head"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Joie Rian Espigar</div>
+                          <div className="text-sm text-muted-foreground">Head of Department of Secretariat and Logistics</div>
+                          <p className="text-sm text-muted-foreground mt-1">Managing communications and public presence.</p>
+                        </div>
+                      </div>
+
+                      {/* PR Department */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/dca.jpg"
+                            alt="PR Head"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Jopher Evann Palma</div>
+                          <div className="text-sm text-muted-foreground">Head of Department of Cultural and Sports Affairs</div>
+                          <p className="text-sm text-muted-foreground mt-1">Managing communications and public presence.</p>
+                        </div>
+                      </div>
+
+                      {/* PR Department */}
+                      <div className="flex items-center gap-4 p-4 rounded-lg border">
+                        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200">
+                          <Image
+                            src="/images/daf.jpg"
+                            alt="PR Head"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                        <div>
+                          <div className="font-semibold">Dawson Khemuelle Mombay</div>
+                          <div className="text-sm text-muted-foreground">Head of Department of Advocacies and Formation</div>
+                          <p className="text-sm text-muted-foreground mt-1">Managing communications and public presence.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
           </div>
         </section>
