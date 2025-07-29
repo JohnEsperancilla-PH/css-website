@@ -14,22 +14,31 @@ interface Message {
 
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
+const WELCOME_MESSAGE = {
+  role: "assistant" as const,
+  content: "Hi there! 👋 I'm your CSS CoPilot, here to help you learn more about the Computer Science Society. What would you like to know?"
+};
+
 export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([WELCOME_MESSAGE]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string>("");
 
-  // Get context from environment variable
+  // Get context and system prompt from environment variables
   const context = process.env.NEXT_PUBLIC_CHATBOT_CONTEXT || "";
+  const systemPrompt = process.env.NEXT_PUBLIC_CHATBOT_SYSTEM_PROMPT || "";
 
   useEffect(() => {
     if (!context) {
       setError("Chatbot context not configured");
     }
-  }, [context]);
+    if (!systemPrompt) {
+      setError("Chatbot system prompt not configured");
+    }
+  }, [context, systemPrompt]);
 
   useEffect(() => {
     if (chatContainerRef.current) {
@@ -61,7 +70,7 @@ export function Chatbot() {
           messages: [
             {
               role: "system",
-              content: `You are a helpful assistant for CSS (Computer Science Society). Use this context to answer questions: ${context}. If you don't find the answer in the context, say so politely and provide a general response.`,
+              content: `${systemPrompt}\n\nKnowledge base: ${context}`,
             },
             ...messages,
             userMessage,
@@ -89,7 +98,7 @@ export function Chatbot() {
         ...prev,
         {
           role: "assistant",
-          content: "Sorry, I encountered an error. Please try again later.",
+          content: "Oops! 😅 I ran into a small hiccup. Could you try asking that again?",
         },
       ]);
     } finally {
@@ -102,7 +111,7 @@ export function Chatbot() {
       {isOpen ? (
         <div className="bg-background border rounded-lg shadow-lg w-[350px] h-[500px] flex flex-col">
           <div className="flex items-center justify-between p-4 border-b">
-            <h3 className="font-semibold">CSS Chat Assistant</h3>
+            <h3 className="font-semibold">CSS CoPilot</h3>
             <Button
               variant="ghost"
               size="icon"
@@ -126,7 +135,7 @@ export function Chatbot() {
             ))}
             {isLoading && (
               <div className="flex justify-center">
-                <span className="animate-pulse">Thinking...</span>
+                <span className="animate-pulse">Thinking... 💭</span>
               </div>
             )}
           </div>
@@ -136,7 +145,7 @@ export function Chatbot() {
               <Input
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your message..."
+                placeholder="Ask me anything! 😊"
                 disabled={isLoading}
               />
               <Button type="submit" disabled={isLoading}>
