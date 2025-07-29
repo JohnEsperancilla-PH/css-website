@@ -15,31 +15,27 @@ import {
   Calendar,
   ArrowUpRight
 } from "lucide-react";
-import { Navbar } from "@/components/navbar";
-import Footer from "@/components/footer";
 import CTABanner from "@/components/cta-banner";
 import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <>
-      <Navbar />
-      <main className="pt-16 xs:pt-20 sm:pt-24">
-        {/* Hero Section */}
-        <section className="min-h-[60vh] flex flex-col items-center justify-center py-20 px-6 relative">
-          <div className="text-center max-w-4xl mx-auto">
-            <Badge className="bg-primary rounded-full py-2 px-4 text-sm sm:text-base border-none mb-6">
-              About CSS USLS ✨
-            </Badge>
-            <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-bold !leading-[1.1] tracking-tight mb-8">
-              Empowering Future
-              <span className="block">Tech Leaders</span>
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto !leading-relaxed">
-              The Computer Science Society of the University of St. La Salle is a vibrant community where innovation meets collaboration, and where every student&apos;s potential takes flight.
-            </p>
-          </div>
-        </section>
+    <main className="pt-16 xs:pt-20 sm:pt-24">
+      {/* Hero Section */}
+      <section className="min-h-[60vh] flex flex-col items-center justify-center py-20 px-6 relative">
+        <div className="text-center max-w-4xl mx-auto">
+          <Badge className="bg-primary rounded-full py-2 px-4 text-sm sm:text-base border-none mb-6">
+            About CSS USLS ✨
+          </Badge>
+          <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl font-bold !leading-[1.1] tracking-tight mb-8">
+            Empowering Future
+            <span className="block">Tech Leaders</span>
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto !leading-relaxed">
+            The Computer Science Society of the University of St. La Salle is a vibrant community where innovation meets collaboration, and where every student&apos;s potential takes flight.
+          </p>
+        </div>
+      </section>
 
         {/* Mission & Vision */}
         <section className="py-20 px-6">
@@ -421,8 +417,6 @@ export default function AboutPage() {
         </section>
 
         <CTABanner />
-        <Footer />
-      </main>
-    </>
+    </main>
   );
 } 
