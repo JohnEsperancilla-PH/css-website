@@ -32,8 +32,14 @@ const Hero = () => {
             <Button
               size="lg"
               className="w-64 sm:w-auto rounded-full text-base sm:text-lg px-4 sm:px-8 py-2 sm:py-4"
+              onClick={() => {
+                document.getElementById('join-section')?.scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'center'
+                });
+              }}
             >
-              Learn More <ArrowUpRight className="!h-5 !w-5 sm:!h-6 sm:!w-6 ml-2" />
+              Join CSS Now <ArrowUpRight className="!h-5 !w-5 sm:!h-6 sm:!w-6 ml-2" />
             </Button>
           </div>
         </div>

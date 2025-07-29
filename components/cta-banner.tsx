@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export default function CTABanner() {
   return (
-    <div className="px-6">
+    <div className="px-6" id="join-section">
       <div className="dark:border relative overflow-hidden my-20 w-full dark bg-background text-foreground max-w-screen-lg mx-auto rounded-2xl py-10 md:py-16 px-6 md:px-14">
         <AnimatedGridPattern
           numSquares={30}
