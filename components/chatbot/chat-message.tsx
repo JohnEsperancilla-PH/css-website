@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Avatar } from "../ui/avatar";
+import { Avatar, AvatarImage, AvatarFallback } from "../ui/avatar";
 
 interface ChatMessageProps {
   content: string;
@@ -16,10 +16,13 @@ export function ChatMessage({ content, role }: ChatMessageProps) {
         role === "user" ? "flex-row-reverse" : "flex-row"
       )}
     >
-      <Avatar
-        className="h-8 w-8"
-        src={role === "assistant" ? "/images/css-logo.png" : undefined}
-      />
+      <Avatar className="h-8 w-8">
+        {role === "assistant" ? (
+          <AvatarImage src="/images/css-logo.png" alt="CSS Logo" />
+        ) : (
+          <AvatarFallback>U</AvatarFallback>
+        )}
+      </Avatar>
       <div
         className={cn(
           "rounded-lg px-3 py-2 max-w-[80%]",
