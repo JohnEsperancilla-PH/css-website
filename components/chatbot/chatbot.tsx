@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { ChatMessage } from "./chat-message";
-import { MessageSquare, X } from "lucide-react";
+import { MessageSquare, X, ExternalLink } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Message {
@@ -111,7 +111,18 @@ export function Chatbot() {
       {isOpen ? (
         <div className="bg-background border rounded-lg shadow-lg w-[350px] h-[500px] flex flex-col">
           <div className="flex items-center justify-between p-4 border-b">
-            <h3 className="font-semibold">CSS CoPilot</h3>
+            <div className="flex items-center gap-2">
+              <h3 className="font-semibold">CSS CoPilot</h3>
+              <a
+                href="https://cscopilot.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors"
+              >
+                Learn More
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
             <Button
               variant="ghost"
               size="icon"
