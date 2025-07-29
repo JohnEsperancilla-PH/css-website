@@ -31,7 +31,8 @@ const LoadingScreen = ({ onLoadingComplete }: { onLoadingComplete: () => void })
             animate={{ height: "100vh" }}
             transition={{ 
               duration: 2, 
-              ease: "easeInOut" 
+              ease: "easeInOut",
+              delay: 0.1
             }}
             className="absolute left-1/2 bottom-0 w-0.5 bg-black/60 dark:bg-gray-700 origin-bottom"
             style={{ transform: "translateX(-50%)" }}

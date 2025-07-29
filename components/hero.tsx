@@ -5,7 +5,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="min-h-[120vh] flex flex-col items-center py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
+    <div className="min-h-[120vh] flex flex-col items-center py-10 xs:py-16 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
       {/* Airplane Flight Route Background */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-5"
@@ -17,7 +17,7 @@ const Hero = () => {
         }}
       />
 
-      <div className="mt-16 md:mt-4 flex items-center justify-center relative z-10">
+      <div className="mt-4 xs:mt-8 md:mt-4 flex items-center justify-center relative z-10">
         <div className="text-center max-w-4xl">
           <Badge className="bg-primary rounded-full py-2 px-4 text-base sm:text-base border-none">
             Club Fair 2025 is here! 🚀
