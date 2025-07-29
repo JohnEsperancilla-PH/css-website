@@ -20,7 +20,7 @@ const Hero = () => {
       <div className="mt-4 xs:mt-8 md:mt-4 flex items-center justify-center relative z-10">
         <div className="text-center max-w-4xl">
           <Badge className="bg-primary rounded-full py-2 px-4 text-base sm:text-base border-none">
-            CSS CoPilot is here! 🚀
+            CSS CoPilot is here!
           </Badge>
           <h1 className="mt-6 sm:mt-8 max-w-[20ch] mx-auto text-4xl xs:text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold !leading-[1.1] tracking-tight">
             Computer Science Society
