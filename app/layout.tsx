@@ -41,36 +41,21 @@ export const metadata: Metadata = {
     },
   ],
   creator: "John Esperancilla",
-  icons: [
-    {
-      rel: "icon",
-      url: "/favicon.ico",
-    },
-    {
-      rel: "icon",
-      type: "image/svg+xml",
-      url: "/favicon.svg",
-    },
-    {
-      rel: "apple-touch-icon",
-      url: "/apple-touch-icon.png",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      url: "/favicon-96x96.png",
-      sizes: "96x96",
-    },
-    {
-      rel: "icon",
-      type: "image/png",
-      url: "/web-app-manifest-192x192.png",
-      sizes: "192x192",
-    },
-  ],
-  robots: {
-    index: true,
-    follow: true,
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" }
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png" }
+    ],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/favicon.svg",
+      },
+    ],
   },
   manifest: "/site.webmanifest",
 };
