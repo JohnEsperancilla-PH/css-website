@@ -263,7 +263,7 @@ export default function AboutPage() {
                         <div>
                           <div className="font-semibold">Club Moderator</div>
                           <div className="text-sm text-muted-foreground">Julian Diego Mapa</div>
-                          <p className="text-sm text-muted-foreground mt-1">Overseeing financial management and budgeting.</p>
+                          <p className="text-sm text-muted-foreground mt-1">Guides the student leaders and the club and helps in overseeing the club.</p>
                         </div>
                       </div>
                     </div>
@@ -290,7 +290,7 @@ export default function AboutPage() {
                         <div>
                           <div className="font-semibold">John Leonard Esperancilla</div>
                           <div className="text-sm text-muted-foreground">Head of Department of Human Relations</div>
-                          <p className="text-sm text-muted-foreground mt-1">hehehe</p>
+                          <p className="text-sm text-muted-foreground mt-1">Monitors officer and member engagement.</p>
                         </div>
                       </div>
 
@@ -307,7 +307,7 @@ export default function AboutPage() {
                         <div>
                           <div className="font-semibold">Stalingrad Dollosa</div>
                           <div className="text-sm text-muted-foreground">Head of Department of Budget and Finance</div>
-                          <p className="text-sm text-muted-foreground mt-1">Organizing and coordinating community events.</p>
+                          <p className="text-sm text-muted-foreground mt-1">Assists in budgeting and financial planning.</p>
                         </div>
                       </div>
 
@@ -358,7 +358,7 @@ export default function AboutPage() {
                         <div>
                           <div className="font-semibold">Kim Ivan Arigorat</div>
                           <div className="text-sm text-muted-foreground">Head of Department of Academic Affairs</div>
-                          <p className="text-sm text-muted-foreground mt-1">Managing communications and public presence.</p>
+                          <p className="text-sm text-muted-foreground mt-1">In charge of student and community academic development.</p>
                         </div>
                       </div>
 
@@ -375,7 +375,7 @@ export default function AboutPage() {
                         <div>
                           <div className="font-semibold">Joie Rian Espigar</div>
                           <div className="text-sm text-muted-foreground">Head of Department of Secretariat and Logistics</div>
-                          <p className="text-sm text-muted-foreground mt-1">Managing communications and public presence.</p>
+                          <p className="text-sm text-muted-foreground mt-1">Handles event documentation and university requirements.</p>
                         </div>
                       </div>
 
@@ -392,7 +392,7 @@ export default function AboutPage() {
                         <div>
                           <div className="font-semibold">Jopher Evann Palma</div>
                           <div className="text-sm text-muted-foreground">Head of Department of Cultural and Sports Affairs</div>
-                          <p className="text-sm text-muted-foreground mt-1">Managing communications and public presence.</p>
+                          <p className="text-sm text-muted-foreground mt-1">Coordinates production needs and event logistics.</p>
                         </div>
                       </div>
 
@@ -409,7 +409,7 @@ export default function AboutPage() {
                         <div>
                           <div className="font-semibold">Dawson Khemuelle Mombay</div>
                           <div className="text-sm text-muted-foreground">Head of Department of Advocacies and Formation</div>
-                          <p className="text-sm text-muted-foreground mt-1">Managing communications and public presence.</p>
+                          <p className="text-sm text-muted-foreground mt-1">Handles planning and implementation of outreach and advocacy activities.</p>
                         </div>
                       </div>
                     </div>
