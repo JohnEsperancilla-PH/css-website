@@ -5,7 +5,7 @@ import React from "react";
 
 const Hero = () => {
   return (
-    <div className="min-h-[120vh] flex flex-col items-center py-16 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
+    <div className="min-h-[120vh] flex flex-col items-center py-24 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
       {/* Airplane Flight Route Background */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-5"
@@ -17,13 +17,13 @@ const Hero = () => {
         }}
       />
 
-      <div className="mt-8 md:mt-4 flex items-center justify-center relative z-10">
+      <div className="mt-16 md:mt-4 flex items-center justify-center relative z-10">
         <div className="text-center max-w-4xl">
           <Badge className="bg-primary rounded-full py-2 px-4 text-base sm:text-base border-none">
             Club Fair 2025 is here! 🚀
           </Badge>
           <h1 className="mt-6 sm:mt-8 max-w-[20ch] mx-auto text-4xl xs:text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold !leading-[1.1] tracking-tight">
-            Computer Science Society - USLS
+            Computer Science Society
           </h1>
           <p className="mt-4 sm:mt-8 max-w-[60ch] mx-auto text-lg sm:text-lg md:text-xl lg:text-2xl !leading-relaxed px-2 sm:px-0">
             Welcome aboard the Computer Science Society of the University of St. La Salle – where innovation takes flight and ideas ascend beyond limits. Accentuate your potential. And let your passion for Computer Science take flight.

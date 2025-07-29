@@ -5,12 +5,16 @@ import { NavigationSheet } from "./navigation-sheet";
 
 const Navbar = () => {
   return (
-    <nav className="fixed z-10 top-6 inset-x-4 h-14 xs:h-16 bg-background/50 backdrop-blur-sm border max-w-screen-xl mx-auto rounded-full">
-      <div className="h-full flex items-center justify-between mx-auto px-4">
-        <Logo />
+    <nav className="fixed z-50 top-6 inset-x-4 h-14 xs:h-16 bg-white/70 backdrop-blur-md border max-w-screen-xl mx-auto rounded-full shadow-sm">
+      <div className="h-full flex items-center justify-between mx-auto px-4 relative">
+        <div className="flex-shrink-0">
+          <Logo />
+        </div>
 
-        {/* Desktop Menu */}
-        <NavMenu className="hidden md:block" />
+        {/* Desktop Menu - Centered */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <NavMenu className="hidden md:block" />
+        </div>
 
         <div className="flex items-center gap-3">
           <Button asChild className="hidden xs:inline-flex">

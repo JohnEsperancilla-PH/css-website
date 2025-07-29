@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export const NavMenu = (props: NavigationMenuProps) => (
   <NavigationMenu {...props}>
-    <NavigationMenuList className="gap-6 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start">
+    <NavigationMenuList className="gap-8 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start relative z-50">
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
           <Link href="/">Home</Link>

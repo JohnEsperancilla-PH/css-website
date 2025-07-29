@@ -11,7 +11,7 @@ const LoadingScreen = ({ onLoadingComplete }: { onLoadingComplete: () => void })
     const timer = setTimeout(() => {
       setIsVisible(false);
       setTimeout(onLoadingComplete, 1000);
-    }, 4000);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, [onLoadingComplete]);
@@ -30,9 +30,8 @@ const LoadingScreen = ({ onLoadingComplete }: { onLoadingComplete: () => void })
             initial={{ height: 0 }}
             animate={{ height: "100vh" }}
             transition={{ 
-              duration: 3, 
-              ease: "easeInOut",
-              delay: 0.5 
+              duration: 2, 
+              ease: "easeInOut" 
             }}
             className="absolute left-1/2 bottom-0 w-0.5 bg-black/60 dark:bg-gray-700 origin-bottom"
             style={{ transform: "translateX(-50%)" }}
@@ -43,7 +42,7 @@ const LoadingScreen = ({ onLoadingComplete }: { onLoadingComplete: () => void })
             initial={{ y: "100vh", x: "-50%" }}
             animate={{ y: -100, x: "-50%" }}
             transition={{ 
-              duration: 3.5, 
+              duration: 2, 
               ease: "easeInOut" 
             }}
             className="absolute left-1/2 z-10"
