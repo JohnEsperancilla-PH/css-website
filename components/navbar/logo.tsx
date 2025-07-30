@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 export const Logo = () => (
-  <div className="flex items-center gap-4">
+  <div className="flex items-center gap-2">
     {/* USLS Logo */}
     <div className="relative h-8 w-16 sm:h-10 sm:w-20">
       <Image

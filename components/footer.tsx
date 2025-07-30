@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="py-12 flex flex-col sm:flex-row items-start justify-between gap-x-8 gap-y-10 px-6 xl:px-0">
           <div>
             {/* Logos */}
-            <div className="flex items-center gap-6 mb-4">
+            <div className="flex items-center gap-2 mb-4">
               {/* USLS Logo */}
               <div className="relative h-12 w-24">
                 <Image
