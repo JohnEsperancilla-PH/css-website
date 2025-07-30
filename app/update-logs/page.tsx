@@ -14,6 +14,16 @@ interface UpdateLog {
   sha: string;
 }
 
+interface GitHubCommit {
+  sha: string;
+  commit: {
+    message: string;
+    author: {
+      date: string;
+    };
+  };
+}
+
 async function getGitHubCommits(): Promise<UpdateLog[]> {
   try {
     // GitHub repository details
@@ -36,9 +46,9 @@ async function getGitHubCommits(): Promise<UpdateLog[]> {
       throw new Error('Failed to fetch commits');
     }
 
-    const commits = await response.json();
+    const commits: GitHubCommit[] = await response.json();
     
-    return commits.map((commit: any, index: number) => ({
+    return commits.map((commit: GitHubCommit, index: number) => ({
       version: `v1.0.${commits.length - index}`,
       information: commit.commit.message.split('\n')[0], // First line of commit message
       date: new Date(commit.commit.author.date).toLocaleDateString('en-US', {
