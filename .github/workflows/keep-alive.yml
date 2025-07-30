@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Ping Keep-Alive Endpoint
         run: |
-          curl -f https://css-website.vercel.app/api/keep-alive || exit 1
+          curl -f https://computer-science-society-usls.vercel.app/api/keep-alive || exit 1
         continue-on-error: true
         
       - name: Log Success
