@@ -2,8 +2,8 @@ name: Keep Supabase Active
 
 on:
   schedule:
-    # Run every 10 minutes
-    - cron: '*/10 * * * *'
+    # Run once daily at 6 AM UTC (backup to Vercel cron at 12 PM UTC)
+    - cron: '0 6 * * *'
   workflow_dispatch: # Allow manual trigger
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Ping Keep-Alive Endpoint
         run: |
-          curl -f https://css-website.vercel.app/api/keep-alive || exit 1
+          curl -f curl -f https://computer-science-society-usls.vercel.app/api/keep-alive || exit 1
         continue-on-error: true
         
       - name: Log Success

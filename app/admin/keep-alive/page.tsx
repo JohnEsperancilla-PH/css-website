@@ -67,8 +67,8 @@ export default function KeepAlivePage() {
                 <Clock className="w-5 h-5 text-blue-600" />
                 <h3 className="font-semibold text-blue-900">Cron Schedule</h3>
               </div>
-              <p className="text-blue-700">Every 10 minutes</p>
-              <p className="text-sm text-blue-600 mt-1">Vercel Cron + GitHub Actions</p>
+              <p className="text-blue-700">Once daily</p>
+              <p className="text-sm text-blue-600 mt-1">12 PM UTC (Vercel) + 6 AM UTC (GitHub)</p>
             </div>
 
             <div className="bg-green-50 p-6 rounded-lg">
@@ -147,10 +147,10 @@ export default function KeepAlivePage() {
         <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
           <h3 className="font-semibold text-blue-900 mb-3">How It Works</h3>
           <ul className="space-y-2 text-blue-800 text-sm">
-            <li>• <strong>Vercel Cron:</strong> Automatically calls /api/keep-alive every 10 minutes when deployed</li>
-            <li>• <strong>GitHub Actions:</strong> Backup cron job that pings your site externally</li>
+            <li>• <strong>Vercel Cron:</strong> Automatically calls /api/keep-alive daily at 12 PM UTC (Hobby plan compliant)</li>
+            <li>• <strong>GitHub Actions:</strong> Backup cron job at 6 AM UTC for redundancy</li>
             <li>• <strong>Database Query:</strong> Simple SELECT query to maintain active connection</li>
-            <li>• <strong>Lightweight:</strong> Minimal resource usage to respect free tier limits</li>
+            <li>• <strong>Lightweight:</strong> Minimal resource usage, perfect for free tiers</li>
           </ul>
         </div>
       </div>
