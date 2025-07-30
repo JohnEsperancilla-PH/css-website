@@ -7,6 +7,7 @@ import { Form } from '@/lib/types/forms'
 import { supabase } from '@/lib/supabase/client'
 import { EnvironmentStatus } from '@/components/forms/environment-status'
 import { UserMenu } from '@/components/auth/user-menu'
+import { QRCodeGenerator } from '@/components/forms/qr-code-generator'
 import Link from 'next/link'
 
 export default function AdminDashboard() {
@@ -224,41 +225,47 @@ export default function AdminDashboard() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                       {formatDate(form.created_at)}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                      <Link href={`/forms/${form.id}`}>
-                        <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700">
-                          <Eye className="w-4 h-4 mr-1" />
-                          View
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <QRCodeGenerator 
+                          formId={form.id} 
+                          formTitle={form.title}
+                        />
+                        <Link href={`/forms/${form.id}`}>
+                          <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700">
+                            <Eye className="w-4 h-4 mr-1" />
+                            View
+                          </Button>
+                        </Link>
+                        <Link href={`/admin/forms/${form.id}/edit`}>
+                          <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-700">
+                            <Edit className="w-4 h-4 mr-1" />
+                            Edit
+                          </Button>
+                        </Link>
+                        <Link href={`/admin/forms/${form.id}/responses`}>
+                          <Button variant="ghost" size="sm" className="text-green-600 hover:text-green-700">
+                            <BarChart3 className="w-4 h-4 mr-1" />
+                            Responses
+                          </Button>
+                        </Link>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => toggleFormStatus(form.id, form.is_active)}
+                          className="text-purple-600 hover:text-purple-700"
+                        >
+                          {form.is_active ? 'Deactivate' : 'Activate'}
                         </Button>
-                      </Link>
-                      <Link href={`/admin/forms/${form.id}/edit`}>
-                        <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-700">
-                          <Edit className="w-4 h-4 mr-1" />
-                          Edit
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => deleteForm(form.id)}
+                          className="text-red-600 hover:text-red-700"
+                        >
+                          <Trash2 className="w-4 h-4" />
                         </Button>
-                      </Link>
-                      <Link href={`/admin/forms/${form.id}/responses`}>
-                        <Button variant="ghost" size="sm" className="text-green-600 hover:text-green-700">
-                          <BarChart3 className="w-4 h-4 mr-1" />
-                          Responses
-                        </Button>
-                      </Link>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => toggleFormStatus(form.id, form.is_active)}
-                        className="text-purple-600 hover:text-purple-700"
-                      >
-                        {form.is_active ? 'Deactivate' : 'Activate'}
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => deleteForm(form.id)}
-                        className="text-red-600 hover:text-red-700"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
+                      </div>
                     </td>
                   </tr>
                 ))}

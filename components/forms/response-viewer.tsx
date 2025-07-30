@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 
 import { Form, FormResponse } from '@/lib/types/forms'
 import { supabase } from '@/lib/supabase/client'
+import { QRCodeGenerator } from './qr-code-generator'
 
 interface ResponseViewerProps {
   form: Form
@@ -101,15 +102,21 @@ export function ResponseViewer({ form }: ResponseViewerProps) {
             <h1 className="text-4xl font-bold text-gray-900 mb-2">{form.title}</h1>
             <p className="text-lg text-gray-600">{responses.length} responses collected</p>
           </div>
-          <Button
-            onClick={exportToCSV}
-            disabled={responses.length === 0}
-            size="lg"
-            className="flex items-center gap-2 px-6 py-3"
-          >
-            <Download className="w-5 h-5" />
-            Export CSV
-          </Button>
+          <div className="flex items-center gap-3">
+            <QRCodeGenerator 
+              formId={form.id} 
+              formTitle={form.title}
+            />
+            <Button
+              onClick={exportToCSV}
+              disabled={responses.length === 0}
+              size="lg"
+              className="flex items-center gap-2 px-6 py-3"
+            >
+              <Download className="w-5 h-5" />
+              Export CSV
+            </Button>
+          </div>
         </div>
       </div>
 

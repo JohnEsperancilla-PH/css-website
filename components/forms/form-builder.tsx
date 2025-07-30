@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Form, Question, QuestionType } from '@/lib/types/forms'
 import { supabase } from '@/lib/supabase/client'
+import { QRCodeGenerator } from './qr-code-generator'
 
 
 interface FormBuilderProps {
@@ -340,15 +341,24 @@ export function FormBuilder({ form, onSave }: FormBuilderProps) {
               )}
             </div>
           </div>
-          <Button
-            onClick={handleSave}
-            disabled={isSaving || !title.trim() || questions.length === 0 || !questions.every(q => q.title.trim())}
-            size="lg"
-            className="flex items-center gap-2 px-8 py-3"
-          >
-            <Save className="w-5 h-5" />
-            {isSaving ? 'Saving...' : 'Save Form'}
-          </Button>
+          <div className="flex items-center gap-3">
+            {/* Show QR Code button only when editing existing form */}
+            {form?.id && (
+              <QRCodeGenerator 
+                formId={form.id} 
+                formTitle={form.title}
+              />
+            )}
+            <Button
+              onClick={handleSave}
+              disabled={isSaving || !title.trim() || questions.length === 0 || !questions.every(q => q.title.trim())}
+              size="lg"
+              className="flex items-center gap-2 px-8 py-3"
+            >
+              <Save className="w-5 h-5" />
+              {isSaving ? 'Saving...' : 'Save Form'}
+            </Button>
+          </div>
         </div>
       </div>
     </div>
