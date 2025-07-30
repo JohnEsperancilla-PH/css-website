@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import QRCode from 'qrcode'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { QrCode, Download, Copy, Check, X } from 'lucide-react'
 
@@ -115,10 +116,13 @@ export function QRCodeGenerator({ formId, formTitle, className = '' }: QRCodeGen
               {/* QR Code */}
               <div className="bg-white p-4 rounded-lg border border-gray-200 inline-block">
                 {qrCodeUrl && (
-                  <img 
+                  <Image 
                     src={qrCodeUrl} 
                     alt={`QR Code for ${formTitle}`}
-                    className="w-64 h-64 mx-auto"
+                    width={256}
+                    height={256}
+                    className="mx-auto"
+                    unoptimized
                   />
                 )}
               </div>
