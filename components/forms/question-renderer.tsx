@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Star } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 
@@ -17,6 +17,15 @@ export function QuestionRenderer({ question, value, onChange }: QuestionRenderer
   const [textValue, setTextValue] = useState(
     typeof value === 'string' ? value : ''
   )
+
+  // Clear text input when question changes or value changes
+  useEffect(() => {
+    if (typeof value === 'string') {
+      setTextValue(value)
+    } else {
+      setTextValue('')
+    }
+  }, [value, question.id])
 
   function handleTextChange(newValue: string) {
     setTextValue(newValue)
@@ -46,20 +55,20 @@ export function QuestionRenderer({ question, value, onChange }: QuestionRenderer
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 sm:space-y-8">
       {/* Question Title */}
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-3">
+      <div className="text-center px-4">
+        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">
           {question.title}
           {question.required && <span className="text-red-500 ml-1">*</span>}
         </h2>
         {question.description && (
-          <p className="text-gray-600 text-base leading-relaxed max-w-md mx-auto">{question.description}</p>
+          <p className="text-gray-600 text-sm sm:text-base lg:text-lg leading-relaxed max-w-md mx-auto">{question.description}</p>
         )}
       </div>
 
       {/* Question Input */}
-      <div className="mt-8">
+      <div className="mt-6 sm:mt-8 px-4">
         {question.type === 'short_text' && (
           <div className="max-w-md mx-auto">
             <Input
@@ -67,7 +76,7 @@ export function QuestionRenderer({ question, value, onChange }: QuestionRenderer
               value={textValue}
               onChange={(e) => handleTextChange(e.target.value)}
               placeholder="Your answer"
-              className="w-full text-center text-lg py-3"
+              className="w-full text-center text-base sm:text-lg py-3 sm:py-4 min-h-[44px]"
             />
           </div>
         )}
@@ -78,7 +87,7 @@ export function QuestionRenderer({ question, value, onChange }: QuestionRenderer
               value={textValue}
               onChange={(e) => handleTextChange(e.target.value)}
               placeholder="Your answer"
-              className="w-full min-h-[150px] p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y text-base"
+              className="w-full min-h-[120px] sm:min-h-[150px] p-3 sm:p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y text-sm sm:text-base"
             />
           </div>
         )}
@@ -90,7 +99,7 @@ export function QuestionRenderer({ question, value, onChange }: QuestionRenderer
               value={textValue}
               onChange={(e) => handleTextChange(e.target.value)}
               placeholder="your.email@example.com"
-              className="w-full text-center text-lg py-3"
+              className="w-full text-center text-base sm:text-lg py-3 sm:py-4 min-h-[44px]"
             />
           </div>
         )}
@@ -102,7 +111,7 @@ export function QuestionRenderer({ question, value, onChange }: QuestionRenderer
               value={typeof value === 'number' ? value.toString() : ''}
               onChange={(e) => handleNumberChange(e.target.value)}
               placeholder="Enter a number"
-              className="w-full text-center text-lg py-3"
+              className="w-full text-center text-base sm:text-lg py-3 sm:py-4 min-h-[44px]"
               min={question.validation?.min}
               max={question.validation?.max}
             />
@@ -110,35 +119,35 @@ export function QuestionRenderer({ question, value, onChange }: QuestionRenderer
         )}
 
         {question.type === 'multiple_choice' && question.options && (
-          <div className="max-w-md mx-auto space-y-4">
+          <div className="max-w-lg mx-auto space-y-3 sm:space-y-4">
             {question.options.map((option, index) => (
-              <label key={index} className="flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer hover:border-blue-300 transition-colors">
+              <label key={index} className="flex items-center p-3 sm:p-4 border-2 rounded-lg cursor-pointer hover:border-blue-300 transition-colors min-h-[52px] touch-manipulation">
                 <input
                   type="radio"
                   name={question.id}
                   value={option}
                   checked={value === option}
                   onChange={() => handleMultipleChoice(option)}
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500 mr-3"
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 border-gray-300 focus:ring-blue-500 mr-3 sm:mr-4 flex-shrink-0"
                 />
-                <span className="text-gray-700 text-base flex-1">{option}</span>
+                <span className="text-gray-700 text-sm sm:text-base flex-1 leading-tight">{option}</span>
               </label>
             ))}
           </div>
         )}
 
         {question.type === 'checkbox' && question.options && (
-          <div className="max-w-md mx-auto space-y-4">
+          <div className="max-w-lg mx-auto space-y-3 sm:space-y-4">
             {question.options.map((option, index) => (
-              <label key={index} className="flex items-center justify-center p-4 border-2 rounded-lg cursor-pointer hover:border-blue-300 transition-colors">
+              <label key={index} className="flex items-center p-3 sm:p-4 border-2 rounded-lg cursor-pointer hover:border-blue-300 transition-colors min-h-[52px] touch-manipulation">
                 <input
                   type="checkbox"
                   value={option}
                   checked={Array.isArray(value) && value.includes(option)}
                   onChange={(e) => handleCheckbox(option, e.target.checked)}
-                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-3"
+                  className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500 mr-3 sm:mr-4 flex-shrink-0"
                 />
-                <span className="text-gray-700 text-base flex-1">{option}</span>
+                <span className="text-gray-700 text-sm sm:text-base flex-1 leading-tight">{option}</span>
               </label>
             ))}
           </div>
@@ -146,25 +155,25 @@ export function QuestionRenderer({ question, value, onChange }: QuestionRenderer
 
         {question.type === 'rating' && (
           <div className="text-center">
-            <div className="flex items-center justify-center space-x-3 mb-4">
+            <div className="flex items-center justify-center space-x-2 sm:space-x-3 mb-4 sm:mb-6">
               {[1, 2, 3, 4, 5].map((rating) => (
                 <button
                   key={rating}
                   type="button"
                   onClick={() => handleRating(rating)}
                   className={cn(
-                    "p-2 rounded-lg transition-all duration-200 hover:scale-110",
+                    "p-2 sm:p-3 rounded-lg transition-all duration-200 hover:scale-110 touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center",
                     typeof value === 'number' && value >= rating
                       ? "text-yellow-400 shadow-md"
                       : "text-gray-300 hover:text-yellow-300"
                   )}
                 >
-                  <Star className="w-10 h-10 fill-current" />
+                  <Star className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 fill-current" />
                 </button>
               ))}
             </div>
             {typeof value === 'number' && (
-              <p className="text-lg font-medium text-gray-700">{value} out of 5 stars</p>
+              <p className="text-base sm:text-lg font-medium text-gray-700">{value} out of 5 stars</p>
             )}
           </div>
         )}

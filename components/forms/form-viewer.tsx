@@ -91,13 +91,13 @@ export function FormViewer({ form, onSubmit }: FormViewerProps) {
 
   if (isSubmitted) {
     return (
-      <div className="max-w-2xl mx-auto px-6 py-16 text-center">
-        <div className="bg-white rounded-xl p-12 shadow-sm border border-gray-100">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Check className="w-10 h-10 text-green-600" />
+      <div className="max-w-2xl mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center">
+        <div className="bg-white rounded-xl p-8 sm:p-12 shadow-sm border border-gray-100">
+          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Check className="w-8 h-8 sm:w-10 sm:h-10 text-green-600" />
           </div>
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Thank you!</h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Thank you!</h2>
+          <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
             Your response has been recorded successfully. We appreciate you taking the time to complete this form.
           </p>
         </div>
@@ -106,28 +106,28 @@ export function FormViewer({ form, onSubmit }: FormViewerProps) {
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-8">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
       {/* Progress Bar */}
-      <div className="mb-12">
-        <div className="flex justify-between items-center mb-3">
-          <span className="text-sm font-medium text-gray-600">
+      <div className="mb-8 sm:mb-12">
+        <div className="flex justify-between items-center mb-3 sm:mb-4">
+          <span className="text-xs sm:text-sm font-medium text-gray-600">
             Question {currentQuestionIndex + 1} of {form.questions.length}
           </span>
-          <span className="text-sm font-medium text-gray-600">{Math.round(progress)}%</span>
+          <span className="text-xs sm:text-sm font-medium text-gray-600">{Math.round(progress)}%</span>
         </div>
-        <Progress value={progress} className="h-3" />
+        <Progress value={progress} className="h-2 sm:h-3" />
       </div>
 
       {/* Form Header */}
-      <div className="mb-12 text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">{form.title}</h1>
+      <div className="mb-8 sm:mb-12 text-center px-4">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 leading-tight">{form.title}</h1>
         {form.description && (
-          <p className="text-lg text-gray-600 leading-relaxed max-w-lg mx-auto">{form.description}</p>
+          <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed max-w-lg mx-auto">{form.description}</p>
         )}
       </div>
 
       {/* Current Question */}
-      <div className="mb-12 bg-white rounded-xl p-8 shadow-sm border border-gray-100">
+      <div className="mb-8 sm:mb-12 bg-white rounded-xl p-4 sm:p-6 lg:p-8 shadow-sm border border-gray-100">
         <QuestionRenderer
           question={currentQuestion}
           value={responses.find(r => r.question_id === currentQuestion.id)?.answer}
@@ -136,34 +136,35 @@ export function FormViewer({ form, onSubmit }: FormViewerProps) {
       </div>
 
       {/* Navigation */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center gap-4 px-2">
         <Button
           variant="outline"
           onClick={goToPrevious}
           disabled={currentQuestionIndex === 0}
-          className="flex items-center gap-2 px-6 py-3 text-base"
+          className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-3 text-sm sm:text-base min-h-[44px] touch-manipulation"
         >
-          <ChevronLeft className="w-5 h-5" />
-          Previous
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+          <span className="hidden xs:inline">Previous</span>
+          <span className="xs:hidden">Prev</span>
         </Button>
 
         {isLastQuestion ? (
           <Button
             onClick={handleSubmit}
             disabled={!canGoNext || isSubmitting}
-            className="flex items-center gap-2 px-8 py-3 text-base bg-green-600 hover:bg-green-700"
+            className="flex items-center gap-1 sm:gap-2 px-6 sm:px-8 py-3 text-sm sm:text-base bg-green-600 hover:bg-green-700 min-h-[44px] touch-manipulation"
           >
             {isSubmitting ? 'Submitting...' : 'Submit Form'}
-            <Check className="w-5 h-5" />
+            <Check className="w-4 h-4 sm:w-5 sm:h-5" />
           </Button>
         ) : (
           <Button
             onClick={goToNext}
             disabled={!canGoNext}
-            className="flex items-center gap-2 px-6 py-3 text-base"
+            className="flex items-center gap-1 sm:gap-2 px-4 sm:px-6 py-3 text-sm sm:text-base min-h-[44px] touch-manipulation"
           >
             Next
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
           </Button>
         )}
       </div>
