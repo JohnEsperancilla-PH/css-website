@@ -1,0 +1,25 @@
+name: Keep Supabase Active
+
+on:
+  schedule:
+    # Run every 10 minutes
+    - cron: '*/10 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  keep-alive:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Ping Keep-Alive Endpoint
+        run: |
+          curl -f https://css-website.vercel.app/api/keep-alive || exit 1
+        continue-on-error: true
+        
+      - name: Log Success
+        if: success()
+        run: echo "Keep-alive ping successful at $(date)"
+        
+      - name: Log Failure
+        if: failure()
+        run: echo "Keep-alive ping failed at $(date)"

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/navbar/navbar";
-import Footer from "@/components/footer";
-import { Chatbot } from "@/components/chatbot/chatbot";
+import LayoutWrapper from "@/components/layout-wrapper";
+import { AuthProvider } from "@/lib/auth/auth-context";
 
 const jetbrainsMono = JetBrains_Mono({ 
   subsets: ["latin"],
@@ -56,10 +55,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={jetbrainsMono.className}>
-        <Navbar />
-        {children}
-        <Footer />
-        <Chatbot />
+        <AuthProvider>
+          <LayoutWrapper>
+            {children}
+          </LayoutWrapper>
+        </AuthProvider>
       </body>
     </html>
   );
