@@ -69,6 +69,16 @@ const Footer = () => {
             </Link>
             . All rights reserved.
           </span>
+          
+          {/* Update Logs Link */}
+          <div className="flex items-center gap-4">
+            <Link 
+              href="/update-logs" 
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Update Logs
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
