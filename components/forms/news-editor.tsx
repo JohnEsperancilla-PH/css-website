@@ -146,28 +146,62 @@ export function NewsEditor({ article, onSave }: NewsEditorProps) {
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Thumbnail URL (optional)
-            </label>
-            <div className="flex gap-2">
-              <Input
-                value={thumbnailUrl}
-                onChange={(e) => setThumbnailUrl(e.target.value)}
-                placeholder="Enter image URL..."
-                className="flex-1"
-              />
-              <Button
-                variant="outline"
-                size="sm"
-                className="flex items-center gap-2"
-                onClick={() => setThumbnailUrl('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop')}
-              >
-                <Image className="w-4 h-4" />
-                Sample
-              </Button>
+                     <div>
+             <label className="block text-sm font-medium text-gray-700 mb-2">
+               Thumbnail URL (optional)
+             </label>
+             <div className="flex gap-2">
+               <Input
+                 value={thumbnailUrl}
+                 onChange={(e) => setThumbnailUrl(e.target.value)}
+                 placeholder="Enter image URL (supports Imgur, Unsplash, etc.)..."
+                 className="flex-1"
+               />
+                               <Button
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center gap-2"
+                  onClick={() => setThumbnailUrl('https://i.imgur.com/8tMUxPj.jpg')}
+                >
+                  <Image className="w-4 h-4" />
+                  Imgur Sample
+                </Button>
+               <Button
+                 variant="outline"
+                 size="sm"
+                 className="flex items-center gap-2"
+                 onClick={() => setThumbnailUrl('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop')}
+               >
+                 <Image className="w-4 h-4" />
+                 Unsplash Sample
+               </Button>
+             </div>
+                           <p className="text-xs text-gray-500 mt-1">
+                Supports Imgur (i.imgur.com), Unsplash, and other image hosting services
+              </p>
+              
+              {/* Thumbnail Preview */}
+              {thumbnailUrl && (
+                <div className="mt-4">
+                  <p className="text-sm font-medium text-gray-700 mb-2">Thumbnail Preview:</p>
+                  <div className="relative w-full max-w-md">
+                    <img
+                      src={thumbnailUrl}
+                      alt="Thumbnail preview"
+                      className="w-full h-48 object-cover rounded-lg border border-gray-200"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        target.nextElementSibling?.classList.remove('hidden');
+                      }}
+                    />
+                    <div className="hidden absolute inset-0 flex items-center justify-center bg-gray-100 rounded-lg border border-gray-200">
+                      <p className="text-sm text-gray-500">Image not found</p>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">

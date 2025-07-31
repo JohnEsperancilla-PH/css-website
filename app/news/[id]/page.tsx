@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase/client'
 import { Calendar, Clock, User, ArrowLeft, Share2 } from 'lucide-react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
+import Head from 'next/head'
 
 export default function NewsArticlePage() {
   const [article, setArticle] = useState<NewsArticle | null>(null)
@@ -99,98 +100,135 @@ export default function NewsArticlePage() {
     )
   }
 
+  // Generate Open Graph metadata
+  const ogTitle = article.title
+  const ogDescription = article.excerpt || `Read the latest news: ${article.title}`
+  const ogImage = article.thumbnail_url || '/og-image.png' // Fallback to default OG image
+  const ogUrl = typeof window !== 'undefined' ? window.location.href : ''
+  const siteName = 'CSS Website' // Replace with your actual site name
+
   return (
-    <div className="min-h-screen bg-gray-50 pt-24">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        {/* Back Button */}
-        <div className="mb-8">
-          <Link href="/news">
-            <Button variant="ghost" className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4" />
-              Back to News
-            </Button>
-          </Link>
-        </div>
+    <>
+      <Head>
+        {/* Basic Meta Tags */}
+        <title>{ogTitle}</title>
+        <meta name="description" content={ogDescription} />
+        
+        {/* Open Graph Meta Tags */}
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={ogTitle} />
+        <meta property="og:description" content={ogDescription} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:url" content={ogUrl} />
+        <meta property="og:site_name" content={siteName} />
+        
+        {/* Twitter Card Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={ogTitle} />
+        <meta name="twitter:description" content={ogDescription} />
+        <meta name="twitter:image" content={ogImage} />
+        
+        {/* Additional Article Meta Tags */}
+        <meta property="article:published_time" content={article.published_at || article.created_at} />
+        <meta property="article:modified_time" content={article.updated_at} />
+        {article.author && (
+          <meta property="article:author" content={article.author} />
+        )}
+        <meta property="article:section" content={article.category} />
+      </Head>
 
-        {/* Article Header */}
-        <article className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-          {/* Thumbnail */}
-          {article.thumbnail_url && (
-            <div className="aspect-video overflow-hidden">
-              <img
-                src={article.thumbnail_url}
-                alt={article.title}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
+      <div className="min-h-screen bg-gray-50 pt-24">
+        <div className="max-w-4xl mx-auto px-6 py-12">
+          {/* Back Button */}
+          <div className="mb-8">
+            <Link href="/news">
+              <Button variant="ghost" className="flex items-center gap-2">
+                <ArrowLeft className="w-4 h-4" />
+                Back to News
+              </Button>
+            </Link>
+          </div>
 
-          {/* Article Content */}
-          <div className="p-8">
-            {/* Meta Information */}
-            <div className="flex items-center gap-4 mb-6">
-              <Badge className={`${getCategoryColor(article.category)}`}>
-                {article.category}
-              </Badge>
-              {article.author && (
-                <div className="flex items-center gap-1 text-sm text-gray-500">
-                  <User className="w-4 h-4" />
-                  {article.author}
-                </div>
-              )}
-            </div>
-
-            {/* Title */}
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              {article.title}
-            </h1>
-
-            {/* Date and Time */}
-            <div className="flex items-center gap-4 text-sm text-gray-500 mb-8">
-              <div className="flex items-center gap-1">
-                <Calendar className="w-4 h-4" />
-                {formatDate(article.published_at || article.created_at)}
-              </div>
-              <div className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
-                {new Date(article.published_at || article.created_at).toLocaleTimeString('en-US', {
-                  hour: '2-digit',
-                  minute: '2-digit'
-                })}
-              </div>
-            </div>
-
-            {/* Excerpt */}
-            {article.excerpt && (
-              <div className="mb-8 p-4 bg-gray-50 rounded-lg border-l-4 border-primary">
-                <p className="text-lg text-gray-700 italic">
-                  {article.excerpt}
-                </p>
+          {/* Article Header */}
+          <article className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            {/* Thumbnail */}
+            {article.thumbnail_url && (
+              <div className="aspect-video overflow-hidden">
+                <img
+                  src={article.thumbnail_url}
+                  alt={article.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
             )}
 
-            {/* Content */}
-            <div className="prose prose-lg max-w-none">
-              <div 
-                className="text-gray-700 leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: article.content }}
-              />
-            </div>
+            {/* Article Content */}
+            <div className="p-8">
+              {/* Meta Information */}
+              <div className="flex items-center gap-4 mb-6">
+                <Badge className={`${getCategoryColor(article.category)}`}>
+                  {article.category}
+                </Badge>
+                {article.author && (
+                  <div className="flex items-center gap-1 text-sm text-gray-500">
+                    <User className="w-4 h-4" />
+                    {article.author}
+                  </div>
+                )}
+              </div>
 
-            {/* Share Button */}
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <Button
-                variant="outline"
-                onClick={shareArticle}
-                className="flex items-center gap-2"
-              >
-                <Share2 className="w-4 h-4" />
-                Share Article
-              </Button>
+              {/* Title */}
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                {article.title}
+              </h1>
+
+              {/* Date and Time */}
+              <div className="flex items-center gap-4 text-sm text-gray-500 mb-8">
+                <div className="flex items-center gap-1">
+                  <Calendar className="w-4 h-4" />
+                  {formatDate(article.published_at || article.created_at)}
+                </div>
+                <div className="flex items-center gap-1">
+                  <Clock className="w-4 h-4" />
+                  {new Date(article.published_at || article.created_at).toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </div>
+              </div>
+
+              {/* Excerpt */}
+              {article.excerpt && (
+                <div className="mb-8 p-4 bg-gray-50 rounded-lg border-l-4 border-primary">
+                  <p className="text-lg text-gray-700 italic">
+                    {article.excerpt}
+                  </p>
+                </div>
+              )}
+
+              {/* Content */}
+              <div className="prose prose-lg max-w-none">
+                <div 
+                  className="text-gray-700 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: article.content }}
+                />
+              </div>
+
+              {/* Share Button */}
+              <div className="mt-12 pt-8 border-t border-gray-200">
+                <Button
+                  variant="outline"
+                  onClick={shareArticle}
+                  className="flex items-center gap-2"
+                >
+                  <Share2 className="w-4 h-4" />
+                  Share Article
+                </Button>
+              </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
-    </div>
+    </>
   )
 } 
