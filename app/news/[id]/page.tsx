@@ -2,7 +2,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { NewsArticle } from '@/lib/types/news'
 import { createClient } from '@/lib/supabase/server'
-import { Calendar, Clock, User, ArrowLeft, Share2 } from 'lucide-react'
+import { Calendar, Clock, User, ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
 import { Metadata } from 'next'
 import { ShareButton } from './share-button'
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: NewsArticlePageProps): Promis
         'article:section': article.category,
       },
     }
-  } catch (error) {
+  } catch {
     return {
       title: 'Article Not Found',
       description: 'The article you are looking for does not exist.',
@@ -89,8 +89,8 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
 
     if (error) throw error
     article = data
-  } catch (error) {
-    console.error('Error fetching article:', error)
+  } catch {
+    console.error('Error fetching article')
   }
 
   function formatDate(dateString: string) {

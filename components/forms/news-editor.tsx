@@ -163,7 +163,7 @@ export function NewsEditor({ article, onSave }: NewsEditorProps) {
                   className="flex items-center gap-2"
                   onClick={() => setThumbnailUrl('https://i.imgur.com/8tMUxPj.jpg')}
                 >
-                  <Image className="w-4 h-4" />
+                  <Image className="w-4 h-4" aria-hidden="true" />
                   Imgur Sample
                 </Button>
                <Button
@@ -172,7 +172,7 @@ export function NewsEditor({ article, onSave }: NewsEditorProps) {
                  className="flex items-center gap-2"
                  onClick={() => setThumbnailUrl('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop')}
                >
-                 <Image className="w-4 h-4" />
+                 <Image className="w-4 h-4" aria-hidden="true" />
                  Unsplash Sample
                </Button>
              </div>

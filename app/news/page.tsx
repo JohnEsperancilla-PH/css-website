@@ -1,6 +1,5 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { NewsArticle } from '@/lib/types/news'
 import { createClient } from '@/lib/supabase/server'
 import { Calendar, Search, ArrowRight } from 'lucide-react'
@@ -68,21 +67,6 @@ export default async function NewsPage() {
     }
     return colors[category as keyof typeof colors] || colors.default
   }
-
-  function getCategoryLabel(category: string) {
-    const labels = {
-      'announcement': 'Announcements',
-      'event': 'Events',
-      'update': 'Updates',
-      'feature': 'Features',
-      'news': 'News',
-      'default': 'Other'
-    }
-    return labels[category as keyof typeof labels] || 'Other'
-  }
-
-  // Get unique categories from articles
-  const categories = ['all', ...Array.from(new Set(articles.map(article => article.category)))]
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24">
