@@ -107,6 +107,12 @@ export default function AdminDashboard() {
                   Keep-Alive
                 </Button>
               </Link>
+              <Link href="/admin/news">
+                <Button variant="outline" size="lg" className="flex items-center gap-2 px-6 py-3">
+                  <FileText className="w-5 h-5" />
+                  News Dashboard
+                </Button>
+              </Link>
               <Link href="/admin/forms/new">
                 <Button size="lg" className="flex items-center gap-2 px-6 py-3">
                   <Plus className="w-5 h-5" />

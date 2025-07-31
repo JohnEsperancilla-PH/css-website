@@ -58,6 +58,65 @@ export type Database = {
           ip_address?: string | null
         }
       }
+      news_articles: {
+        Row: {
+          id: string
+          title: string
+          content: string
+          excerpt: string | null
+          thumbnail_url: string | null
+          category: string
+          is_published: boolean
+          author: string | null
+          created_at: string
+          updated_at: string
+          published_at: string | null
+        }
+        Insert: {
+          id?: string
+          title: string
+          content: string
+          excerpt?: string | null
+          thumbnail_url?: string | null
+          category: string
+          is_published?: boolean
+          author?: string | null
+          created_at?: string
+          updated_at?: string
+          published_at?: string | null
+        }
+        Update: {
+          id?: string
+          title?: string
+          content?: string
+          excerpt?: string | null
+          thumbnail_url?: string | null
+          category?: string
+          is_published?: boolean
+          author?: string | null
+          updated_at?: string
+          published_at?: string | null
+        }
+      }
+      news_categories: {
+        Row: {
+          id: string
+          name: string
+          color: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          name: string
+          color: string
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          name?: string
+          color?: string
+        }
+      }
     }
   }
 }
