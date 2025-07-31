@@ -8,18 +8,19 @@ import { Metadata } from 'next'
 import { ShareButton } from './share-button'
 
 interface NewsArticlePageProps {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 // Generate metadata for the page
 export async function generateMetadata({ params }: NewsArticlePageProps): Promise<Metadata> {
   const supabase = createClient()
+  const { id } = await params
   
   try {
     const { data: article } = await supabase
       .from('news_articles')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('is_published', true)
       .single()
 
@@ -77,13 +78,14 @@ export async function generateMetadata({ params }: NewsArticlePageProps): Promis
 
 export default async function NewsArticlePage({ params }: NewsArticlePageProps) {
   const supabase = createClient()
+  const { id } = await params
   let article: NewsArticle | null = null
 
   try {
     const { data, error } = await supabase
       .from('news_articles')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .eq('is_published', true)
       .single()
 

@@ -10,6 +10,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://computer-science-society-usls.vercel.app'),
   title: "CSS - Computer Science Society",
   description: "Empowering students in technology",
   keywords: [
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://css-website.vercel.app",
+    url: "https://computer-science-society-usls.vercel.app",
     title: "CSS - Computer Science Society",
     description: "Empowering students in technology",
     siteName: "CSS - Computer Science Society",
