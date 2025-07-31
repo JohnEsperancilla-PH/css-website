@@ -67,7 +67,7 @@ export default function EditArticlePage() {
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="text-center py-16 bg-white rounded-xl shadow-sm border border-gray-100">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">Article Not Found</h1>
-            <p className="text-gray-600 mb-6">The article you're trying to edit doesn't exist or has been removed.</p>
+                         <p className="text-gray-600 mb-6">The article you&apos;re trying to edit doesn&apos;t exist or has been removed.</p>
             <Link href="/admin/news">
               <Button>
                 <ArrowLeft className="w-4 h-4 mr-2" />

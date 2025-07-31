@@ -185,12 +185,6 @@ export default function FormsDashboard() {
               <FileText className="w-16 h-16 text-gray-400 mx-auto mb-6" />
               <h3 className="text-xl font-semibold text-gray-900 mb-3">No forms yet</h3>
               <p className="text-gray-600 mb-6 text-lg">Get started by creating your first form.</p>
-              <Link href="/admin/forms/new">
-                <Button size="lg" className="flex items-center gap-2 px-6 py-3">
-                  <Plus className="w-5 h-5" />
-                  Create Your First Form
-                </Button>
-              </Link>
             </CardContent>
           </Card>
         ) : (

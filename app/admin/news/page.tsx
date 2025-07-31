@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Plus, FileText, Eye, Edit, Trash2, Globe, Calendar, User, ArrowLeft } from 'lucide-react'
+import { Plus, FileText, Eye, Edit, Trash2, Globe, Calendar, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -36,7 +36,7 @@ export default function NewsAdminDashboard() {
 
   async function toggleArticleStatus(articleId: string, isPublished: boolean) {
     try {
-      const updateData = {
+      const updateData: any = {
         is_published: !isPublished,
         updated_at: new Date().toISOString()
       }
@@ -231,6 +231,12 @@ export default function NewsAdminDashboard() {
               <FileText className="w-16 h-16 text-gray-400 mx-auto mb-6" />
               <h3 className="text-xl font-semibold text-gray-900 mb-3">No articles yet</h3>
               <p className="text-gray-600 mb-6 text-lg">Get started by creating your first news article.</p>
+              <Link href="/admin/news/new">
+                <Button size="lg" className="flex items-center gap-2 px-6 py-3">
+                  <Plus className="w-5 h-5" />
+                  Create Your First Article
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         ) : (

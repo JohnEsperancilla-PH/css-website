@@ -1,8 +1,7 @@
 import { Metadata } from "next"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { 
   FileText, 
   Newspaper, 
@@ -11,9 +10,7 @@ import {
   BarChart3, 
   Database,
   Plus,
-  Eye,
-  Edit,
-  Trash2
+  Eye
 } from "lucide-react"
 import { UserMenu } from "@/components/auth/user-menu"
 

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Save, Image, Eye, EyeOff } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { NewsArticle, NewsArticleInsert } from '@/lib/types/news'
+import { NewsArticle } from '@/lib/types/news'
 import { supabase } from '@/lib/supabase/client'
 
 interface NewsEditorProps {
@@ -210,7 +210,7 @@ export function NewsEditor({ article, onSave }: NewsEditorProps) {
               <li><code>&lt;strong&gt;</code> - Bold text</li>
               <li><code>&lt;em&gt;</code> - Italic text</li>
               <li><code>&lt;ul&gt;&lt;li&gt;</code> - Bullet points</li>
-              <li><code>&lt;a href="..."&gt;</code> - Links</li>
+              <li><code>&lt;a href=&quot;...&quot;&gt;</code> - Links</li>
             </ul>
           </div>
         </div>
