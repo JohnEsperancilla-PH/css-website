@@ -36,7 +36,11 @@ export default function NewsAdminDashboard() {
 
   async function toggleArticleStatus(articleId: string, isPublished: boolean) {
     try {
-      const updateData: any = {
+      const updateData: {
+        is_published: boolean
+        updated_at: string
+        published_at?: string
+      } = {
         is_published: !isPublished,
         updated_at: new Date().toISOString()
       }
