@@ -1,10 +1,11 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { NewsArticle } from '@/lib/types/news'
-import { supabase } from '@/lib/supabase/client'
+import { createClient } from '@/lib/supabase/server'
 import { Calendar, Clock, User, ArrowLeft, Share2 } from 'lucide-react'
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { ShareButton } from './share-button'
 
 interface NewsArticlePageProps {
   params: { id: string }
@@ -12,6 +13,8 @@ interface NewsArticlePageProps {
 
 // Generate metadata for the page
 export async function generateMetadata({ params }: NewsArticlePageProps): Promise<Metadata> {
+  const supabase = createClient()
+  
   try {
     const { data: article } = await supabase
       .from('news_articles')
@@ -54,7 +57,7 @@ export async function generateMetadata({ params }: NewsArticlePageProps): Promis
       twitter: {
         card: 'summary_large_image',
         title: article.title,
-        description: article.excerpt || `Read the latest news: ${article.title}`,
+        description: article.excerpt || `${article.title}`,
         images: [ogImage],
       },
       other: {
@@ -73,8 +76,8 @@ export async function generateMetadata({ params }: NewsArticlePageProps): Promis
 }
 
 export default async function NewsArticlePage({ params }: NewsArticlePageProps) {
+  const supabase = createClient()
   let article: NewsArticle | null = null
-  let loading = false
 
   try {
     const { data, error } = await supabase
@@ -107,16 +110,6 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
       'default': 'bg-gray-100 text-gray-800'
     }
     return colors[category as keyof typeof colors] || colors.default
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 pt-24">
-        <div className="max-w-4xl mx-auto px-6 py-12">
-          <div className="text-center py-8">Loading article...</div>
-        </div>
-      </div>
-    )
   }
 
   if (!article) {
@@ -218,25 +211,7 @@ export default async function NewsArticlePage({ params }: NewsArticlePageProps) 
 
             {/* Share Button */}
             <div className="mt-12 pt-8 border-t border-gray-200">
-              <Button
-                variant="outline"
-                onClick={() => {
-                  if (navigator.share) {
-                    navigator.share({
-                      title: article.title,
-                      text: article.excerpt,
-                      url: window.location.href
-                    })
-                  } else {
-                    navigator.clipboard.writeText(window.location.href)
-                    alert('Link copied to clipboard!')
-                  }
-                }}
-                className="flex items-center gap-2"
-              >
-                <Share2 className="w-4 h-4" />
-                Share Article
-              </Button>
+              <ShareButton title={article.title} excerpt={article.excerpt} />
             </div>
           </div>
         </article>

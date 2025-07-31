@@ -2,7 +2,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { NewsArticle } from '@/lib/types/news'
-import { supabase } from '@/lib/supabase/client'
+import { createClient } from '@/lib/supabase/server'
 import { Calendar, Search, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { Metadata } from 'next'
@@ -33,8 +33,8 @@ export const metadata: Metadata = {
 }
 
 export default async function NewsPage() {
+  const supabase = createClient()
   let articles: NewsArticle[] = []
-  let loading = true
 
   try {
     const { data, error } = await supabase
@@ -47,8 +47,6 @@ export default async function NewsPage() {
     articles = data || []
   } catch (error) {
     console.error('Error fetching articles:', error)
-  } finally {
-    loading = false
   }
 
   function formatDate(dateString: string) {
@@ -85,16 +83,6 @@ export default async function NewsPage() {
 
   // Get unique categories from articles
   const categories = ['all', ...Array.from(new Set(articles.map(article => article.category)))]
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-gray-50 pt-24">
-        <div className="max-w-6xl mx-auto px-6 py-12">
-          <div className="text-center py-8">Loading news...</div>
-        </div>
-      </div>
-    )
-  }
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24">
