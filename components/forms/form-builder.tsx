@@ -91,7 +91,7 @@ export function FormBuilder({ form, onSave }: FormBuilderProps) {
     // Check if all questions have titles
     const questionsWithoutTitles = questions.filter(q => !q.title.trim())
     if (questionsWithoutTitles.length > 0) {
-      alert('Please add titles to all questions and make sure they are not empty.')
+      alert('Please add titles to all questions.')
       return
     }
 
