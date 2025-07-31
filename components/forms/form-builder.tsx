@@ -84,7 +84,7 @@ export function FormBuilder({ form, onSave }: FormBuilderProps) {
     }
     
     if (questions.length === 0) {
-      alert('Please add at least one question.')
+      alert('Please add at least one question to the form.')
       return
     }
     
