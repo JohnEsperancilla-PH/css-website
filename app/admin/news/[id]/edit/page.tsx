@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import { NewsEditor } from '@/components/forms/news-editor'
 import { NewsArticle } from '@/lib/types/news'
 import { supabase } from '@/lib/supabase/client'
-import { EnvironmentStatus } from '@/components/forms/environment-status'
 import { UserMenu } from '@/components/auth/user-menu'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, Loader2 } from 'lucide-react'
@@ -84,9 +83,6 @@ export default function EditArticlePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-6 py-8">
-        {/* Environment Status */}
-        <EnvironmentStatus />
-        
         {/* Header */}
         <div className="mb-12">
           <div className="flex justify-between items-start mb-6">

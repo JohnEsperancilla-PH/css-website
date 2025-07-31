@@ -1,12 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Plus, FileText, Eye, Edit, Trash2, Globe, Calendar, User } from 'lucide-react'
+import { Plus, FileText, Eye, Edit, Trash2, Globe, Calendar, User, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { NewsArticle } from '@/lib/types/news'
 import { supabase } from '@/lib/supabase/client'
-import { EnvironmentStatus } from '@/components/forms/environment-status'
 import { UserMenu } from '@/components/auth/user-menu'
 import Link from 'next/link'
 
@@ -115,113 +115,132 @@ export default function NewsAdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        {/* Environment Status */}
-        <EnvironmentStatus />
-        
-        {/* Header */}
-        <div className="mb-12">
-          <div className="flex justify-between items-start mb-6">
-            <div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">News Dashboard</h1>
-              <p className="text-lg text-gray-600">Manage your news articles and announcements</p>
-            </div>
-            <div className="flex items-center gap-4">
+      {/* Header */}
+      <header className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-4">
               <Link href="/admin">
-                <Button variant="outline" size="lg" className="flex items-center gap-2 px-6 py-3">
-                  <FileText className="w-5 h-5" />
-                  Forms Dashboard
+                <Button variant="ghost" size="sm">
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back to Dashboard
                 </Button>
               </Link>
-              <Link href="/admin/news/new">
-                <Button size="lg" className="flex items-center gap-2 px-6 py-3">
-                  <Plus className="w-5 h-5" />
-                  Create Article
-                </Button>
-              </Link>
+              <div className="h-6 w-px bg-gray-300" />
+              <h1 className="text-xl font-semibold text-gray-900">News Management</h1>
+            </div>
+            <div className="flex items-center space-x-4">
               <UserMenu />
             </div>
           </div>
         </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header Section */}
+        <div className="mb-8">
+          <div className="flex justify-between items-start">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">News Dashboard</h2>
+              <p className="text-gray-600">Manage your news articles and announcements</p>
+            </div>
+            <Link href="/admin/news/new">
+              <Button size="lg" className="flex items-center gap-2 px-6 py-3">
+                <Plus className="w-5 h-5" />
+                Create Article
+              </Button>
+            </Link>
+          </div>
+        </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Total Articles</p>
-                <p className="text-3xl font-bold text-gray-900">{articles.length}</p>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <Card>
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-sm font-medium text-gray-600">Total Articles</CardTitle>
+                  <CardDescription className="text-3xl font-bold text-gray-900">{articles.length}</CardDescription>
+                </div>
+                <div className="p-3 bg-blue-50 rounded-lg">
+                  <FileText className="w-8 h-8 text-blue-600" />
+                </div>
               </div>
-              <div className="p-3 bg-blue-50 rounded-lg">
-                <FileText className="w-8 h-8 text-blue-600" />
-              </div>
-            </div>
-          </div>
+            </CardHeader>
+          </Card>
           
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Published</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {articles.filter(a => a.is_published).length}
-                </p>
+          <Card>
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-sm font-medium text-gray-600">Published</CardTitle>
+                  <CardDescription className="text-3xl font-bold text-gray-900">
+                    {articles.filter(a => a.is_published).length}
+                  </CardDescription>
+                </div>
+                <div className="p-3 bg-green-50 rounded-lg">
+                  <Globe className="w-8 h-8 text-green-600" />
+                </div>
               </div>
-              <div className="p-3 bg-green-50 rounded-lg">
-                <Globe className="w-8 h-8 text-green-600" />
-              </div>
-            </div>
-          </div>
+            </CardHeader>
+          </Card>
 
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">Drafts</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {articles.filter(a => !a.is_published).length}
-                </p>
+          <Card>
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-sm font-medium text-gray-600">Drafts</CardTitle>
+                  <CardDescription className="text-3xl font-bold text-gray-900">
+                    {articles.filter(a => !a.is_published).length}
+                  </CardDescription>
+                </div>
+                <div className="p-3 bg-purple-50 rounded-lg">
+                  <Eye className="w-8 h-8 text-purple-600" />
+                </div>
               </div>
-              <div className="p-3 bg-purple-50 rounded-lg">
-                <Eye className="w-8 h-8 text-purple-600" />
-              </div>
-            </div>
-          </div>
+            </CardHeader>
+          </Card>
 
-          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-gray-600 mb-1">This Month</p>
-                <p className="text-3xl font-bold text-gray-900">
-                  {articles.filter(a => {
-                    const articleDate = new Date(a.created_at)
-                    const now = new Date()
-                    return articleDate.getMonth() === now.getMonth() && 
-                           articleDate.getFullYear() === now.getFullYear()
-                  }).length}
-                </p>
+          <Card>
+            <CardHeader className="pb-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-sm font-medium text-gray-600">This Month</CardTitle>
+                  <CardDescription className="text-3xl font-bold text-gray-900">
+                    {articles.filter(a => {
+                      const articleDate = new Date(a.created_at)
+                      const now = new Date()
+                      return articleDate.getMonth() === now.getMonth() && 
+                             articleDate.getFullYear() === now.getFullYear()
+                    }).length}
+                  </CardDescription>
+                </div>
+                <div className="p-3 bg-orange-50 rounded-lg">
+                  <Calendar className="w-8 h-8 text-orange-600" />
+                </div>
               </div>
-              <div className="p-3 bg-orange-50 rounded-lg">
-                <Calendar className="w-8 h-8 text-orange-600" />
-              </div>
-            </div>
-          </div>
+            </CardHeader>
+          </Card>
         </div>
 
         {/* Articles List */}
         {articles.length === 0 ? (
-          <div className="text-center py-16 bg-white rounded-xl shadow-sm border border-gray-100">
-            <FileText className="w-16 h-16 text-gray-400 mx-auto mb-6" />
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">No articles yet</h3>
-            <p className="text-gray-600 mb-6 text-lg">Get started by creating your first news article.</p>
-            <Link href="/admin/news/new">
-              <Button size="lg" className="flex items-center gap-2 px-6 py-3">
-                <Plus className="w-5 h-5" />
-                Create Your First Article
-              </Button>
-            </Link>
-          </div>
+          <Card>
+            <CardContent className="text-center py-16">
+              <FileText className="w-16 h-16 text-gray-400 mx-auto mb-6" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">No articles yet</h3>
+              <p className="text-gray-600 mb-6 text-lg">Get started by creating your first news article.</p>
+            </CardContent>
+          </Card>
         ) : (
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-            <div className="overflow-x-auto">
+          <Card>
+            <CardHeader>
+              <CardTitle>All Articles</CardTitle>
+              <CardDescription>Manage and monitor your news articles</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gray-50">
                   <tr>
@@ -315,9 +334,10 @@ export default function NewsAdminDashboard() {
                 </tbody>
               </table>
             </div>
-          </div>
+            </CardContent>
+          </Card>
         )}
-      </div>
+      </main>
     </div>
   )
 } 
