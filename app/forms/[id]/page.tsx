@@ -1,7 +1,5 @@
 import { FormViewer } from '@/components/forms/form-viewer'
-import { Form } from '@/lib/types/forms'
 import { createClient } from '@/lib/supabase/server'
-import { generateFormOGImage } from '@/lib/utils/og-image-generator'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 

@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input'
 import { Form, Question, QuestionType } from '@/lib/types/forms'
 import { supabase } from '@/lib/supabase/client'
 import { QRCodeGenerator } from './qr-code-generator'
-import { generateFormOGImage } from '@/lib/utils/og-image-generator'
 
 
 interface FormBuilderProps {
