@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: "Empowering students in technology",
   keywords: [
     "Computer Science Society",
-    "CSS USLS",
+    "CSS - USLS",
     "Computer Science",
     "University of St. La Salle",
     "Student Organization"
