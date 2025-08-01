@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Save, Image, Eye, EyeOff, Calendar, Clock, MapPin, Users, ExternalLink, Star } from 'lucide-react'
+import { Save, Image, Eye, EyeOff, ExternalLink, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Event } from '@/lib/types/events'
@@ -239,8 +239,8 @@ export function EventEditor({ event, onSave }: EventEditorProps) {
                 className="flex items-center gap-2"
                 onClick={() => setThumbnailUrl('https://i.imgur.com/8tMUxPj.jpg')}
               >
-                <Image className="w-4 h-4" aria-hidden="true" />
-                Imgur Sample
+                                 <Image className="w-4 h-4" aria-hidden="true" />
+                 Imgur Sample
               </Button>
               <Button
                 variant="outline"

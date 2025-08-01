@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Plus, Calendar, BarChart3, Eye, Edit, Trash2, ArrowLeft, Star, Globe } from 'lucide-react'
+import { Plus, Calendar, Eye, Edit, Trash2, ArrowLeft, Star, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'

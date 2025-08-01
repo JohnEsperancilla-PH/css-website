@@ -1,4 +1,3 @@
-import { Event } from '@/lib/types/events'
 import { createClient } from '@/lib/supabase/server'
 import { Metadata } from 'next'
 import { Calendar, Clock, MapPin, Users, ExternalLink } from 'lucide-react'
@@ -47,7 +46,7 @@ export async function generateMetadata({ params }: EventPageProps): Promise<Meta
         images: event.thumbnail_url ? [event.thumbnail_url] : ['/og-image.png'],
       },
     }
-  } catch (error) {
+  } catch {
     return {
       title: 'Event Not Found',
       description: 'The requested event could not be found.',
@@ -207,7 +206,7 @@ export default async function EventPage({ params }: EventPageProps) {
         </div>
       </div>
     )
-  } catch (error) {
+  } catch {
     notFound()
   }
 } 
