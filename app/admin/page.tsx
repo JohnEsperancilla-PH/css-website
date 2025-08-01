@@ -5,12 +5,13 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { 
   FileText, 
   Newspaper, 
-  Settings, 
-  Users, 
+  Code, 
+  Calendar,
   BarChart3, 
-  Database,
-  Plus,
-  Eye
+  Users, 
+  Database, 
+  Plus, 
+  Eye 
 } from "lucide-react"
 import { UserMenu } from "@/components/auth/user-menu"
 
@@ -80,72 +81,94 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          {/* Analytics App (Future) */}
-          <Card className="hover:shadow-lg transition-shadow opacity-60">
+          {/* Features App */}
+          <Card className="hover:shadow-lg transition-shadow">
             <CardContent className="p-8">
               <div className="flex flex-col items-center text-center space-y-4">
                 <div className="p-4 bg-purple-100 rounded-xl">
-                  <BarChart3 className="w-12 h-12 text-purple-600" />
+                  <Code className="w-12 h-12 text-purple-600" />
+                </div>
+                <div>
+                  <CardTitle className="text-xl">Features</CardTitle>
+                </div>
+                <Link href="/admin/features">
+                  <Button className="w-full" size="lg">
+                    <Eye className="w-4 h-4 mr-2" />
+                    Open Features
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Events App */}
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardContent className="p-8">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="p-4 bg-orange-100 rounded-xl">
+                  <Calendar className="w-12 h-12 text-orange-600" />
+                </div>
+                <div>
+                  <CardTitle className="text-xl">Events</CardTitle>
+                </div>
+                <Link href="/admin/events">
+                  <Button className="w-full" size="lg">
+                    <Eye className="w-4 h-4 mr-2" />
+                    Open Events
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Analytics App */}
+          <Card className="hover:shadow-lg transition-shadow">
+            <CardContent className="p-8">
+              <div className="flex flex-col items-center text-center space-y-4">
+                <div className="p-4 bg-orange-100 rounded-xl">
+                  <BarChart3 className="w-12 h-12 text-orange-600" />
                 </div>
                 <div>
                   <CardTitle className="text-xl">Analytics</CardTitle>
                 </div>
                 <Button className="w-full" size="lg" disabled>
-                  <Settings className="w-4 h-4 mr-2" />
+                  <Eye className="w-4 h-4 mr-2" />
                   Coming Soon
                 </Button>
               </div>
             </CardContent>
           </Card>
 
-          {/* Users App (Future) */}
-          <Card className="hover:shadow-lg transition-shadow opacity-60">
+          {/* Users App */}
+          <Card className="hover:shadow-lg transition-shadow">
             <CardContent className="p-8">
               <div className="flex flex-col items-center text-center space-y-4">
-                <div className="p-4 bg-orange-100 rounded-xl">
-                  <Users className="w-12 h-12 text-orange-600" />
+                <div className="p-4 bg-red-100 rounded-xl">
+                  <Users className="w-12 h-12 text-red-600" />
                 </div>
                 <div>
                   <CardTitle className="text-xl">Users</CardTitle>
                 </div>
                 <Button className="w-full" size="lg" disabled>
-                  <Settings className="w-4 h-4 mr-2" />
+                  <Eye className="w-4 h-4 mr-2" />
                   Coming Soon
                 </Button>
               </div>
             </CardContent>
           </Card>
 
-          {/* Database App (Future) */}
-          <Card className="hover:shadow-lg transition-shadow opacity-60">
+          {/* Database App */}
+          <Card className="hover:shadow-lg transition-shadow">
             <CardContent className="p-8">
               <div className="flex flex-col items-center text-center space-y-4">
-                <div className="p-4 bg-red-100 rounded-xl">
-                  <Database className="w-12 h-12 text-red-600" />
+                <div className="p-4 bg-gray-100 rounded-xl">
+                  <Database className="w-12 h-12 text-gray-600" />
                 </div>
                 <div>
                   <CardTitle className="text-xl">Database</CardTitle>
                 </div>
                 <Button className="w-full" size="lg" disabled>
-                  <Settings className="w-4 h-4 mr-2" />
-                  Coming Soon
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Settings App (Future) */}
-          <Card className="hover:shadow-lg transition-shadow opacity-60">
-            <CardContent className="p-8">
-              <div className="flex flex-col items-center text-center space-y-4">
-                <div className="p-4 bg-gray-100 rounded-xl">
-                  <Settings className="w-12 h-12 text-gray-600" />
-                </div>
-                <div>
-                  <CardTitle className="text-xl">Settings</CardTitle>
-                </div>
-                <Button className="w-full" size="lg" disabled>
-                  <Settings className="w-4 h-4 mr-2" />
+                  <Eye className="w-4 h-4 mr-2" />
                   Coming Soon
                 </Button>
               </div>
@@ -156,7 +179,7 @@ export default function AdminDashboard() {
         {/* Quick Actions */}
         <div className="bg-white rounded-lg border border-gray-200 p-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-6">Quick Actions</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <Link href="/admin/forms/new">
               <Button variant="outline" className="w-full h-14">
                 <Plus className="w-4 h-4 mr-2" />
@@ -167,6 +190,12 @@ export default function AdminDashboard() {
               <Button variant="outline" className="w-full h-14">
                 <Plus className="w-4 h-4 mr-2" />
                 Create News Article
+              </Button>
+            </Link>
+            <Link href="/admin/features/new">
+              <Button variant="outline" className="w-full h-14">
+                <Plus className="w-4 h-4 mr-2" />
+                Create Project
               </Button>
             </Link>
             <Link href="/admin/forms">
