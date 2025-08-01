@@ -1,12 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { Plus, Trash2, GripVertical, Save } from 'lucide-react'
+import { Plus, Trash2, GripVertical, Save, Image } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Form, Question, QuestionType } from '@/lib/types/forms'
 import { supabase } from '@/lib/supabase/client'
 import { QRCodeGenerator } from './qr-code-generator'
+import { generateFormOGImage } from '@/lib/utils/og-image-generator'
 
 
 interface FormBuilderProps {
@@ -29,6 +30,18 @@ export function FormBuilder({ form, onSave }: FormBuilderProps) {
   const [description, setDescription] = useState(form?.description || '')
   const [questions, setQuestions] = useState<Question[]>(form?.questions || [])
   const [isSaving, setIsSaving] = useState(false)
+  const [ogImagePreview, setOgImagePreview] = useState<string | null>(null)
+
+  // Clear preview when title or description changes
+  const handleTitleChange = (newTitle: string) => {
+    setTitle(newTitle)
+    setOgImagePreview(null) // Clear preview when title changes
+  }
+
+  const handleDescriptionChange = (newDescription: string) => {
+    setDescription(newDescription)
+    setOgImagePreview(null) // Clear preview when description changes
+  }
 
   function addQuestion() {
     const newQuestion: Question = {
@@ -67,6 +80,23 @@ export function FormBuilder({ form, onSave }: FormBuilderProps) {
     const question = questions[questionIndex]
     const newOptions = (question.options || []).filter((_, i) => i !== optionIndex)
     updateQuestion(questionIndex, { options: newOptions })
+  }
+
+  async function generateOGPreview() {
+    if (!title.trim()) {
+      alert('Please add a form title first to generate the OG image preview.')
+      return
+    }
+
+    try {
+      // Add cache-busting parameter to ensure fresh image generation
+      const timestamp = Date.now()
+      const ogImageUrl = `/api/og/form?title=${encodeURIComponent(title.trim())}${description.trim() ? `&description=${encodeURIComponent(description.trim())}` : ''}&t=${timestamp}`
+      setOgImagePreview(ogImageUrl)
+    } catch (error) {
+      console.error('Error generating OG image preview:', error)
+      alert('Failed to generate OG image preview. Please try again.')
+    }
   }
 
   async function handleSave() {
@@ -177,7 +207,7 @@ export function FormBuilder({ form, onSave }: FormBuilderProps) {
             </label>
             <Input
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => handleTitleChange(e.target.value)}
               placeholder="Enter your form title..."
               className={`text-2xl font-bold ${!title.trim() ? 'border-red-300 focus:border-red-500 focus:ring-red-500' : ''}`}
             />
@@ -191,11 +221,60 @@ export function FormBuilder({ form, onSave }: FormBuilderProps) {
             </label>
             <textarea
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => handleDescriptionChange(e.target.value)}
               placeholder="Add a description to help users understand your form..."
               className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-y"
               rows={3}
             />
+          </div>
+
+          {/* OG Image Preview */}
+          <div>
+            <div className="flex items-center justify-between mb-2">
+              <label className="block text-sm font-medium text-gray-700">
+                Social Media Preview
+              </label>
+              <Button
+                type="button"
+                variant="outline"
+                size="sm"
+                onClick={generateOGPreview}
+                disabled={!title.trim()}
+                className="flex items-center gap-2"
+              >
+                <Image className="w-4 h-4" />
+                Generate Preview
+              </Button>
+            </div>
+            <p className="text-xs text-gray-500 mb-3">
+              Generate a preview of how your form will appear when shared on social media
+            </p>
+            {ogImagePreview && (
+              <div className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-700">OG Image Preview:</span>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setOgImagePreview(null)}
+                    className="text-gray-500 hover:text-gray-700"
+                  >
+                    ×
+                  </Button>
+                </div>
+                <div className="relative w-full max-w-md mx-auto">
+                  <img
+                    src={ogImagePreview}
+                    alt="Social media preview"
+                    className="w-full h-auto rounded border border-gray-200"
+                  />
+                </div>
+                <p className="text-xs text-gray-500 mt-2 text-center">
+                  This image will be used when your form is shared on social media platforms
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>
